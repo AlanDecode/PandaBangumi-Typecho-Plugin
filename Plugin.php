@@ -7,11 +7,11 @@
  * 
  * @package BangumiList
  * @author 熊猫小A
- * @version 0.9
+ * @version 0.91
  * @link https://imalan.cn
  */
 
-define('BangumiList_Plugin_VERSION', '0.9');
+define('BangumiList_Plugin_VERSION', '0.91');
 
 class BangumiList_Plugin implements Typecho_Plugin_Interface
 {
@@ -84,7 +84,7 @@ class BangumiList_Plugin implements Typecho_Plugin_Interface
      */
     public static function header()
     {
-        echo '<link rel="stylesheet" href="/usr/plugins/BangumiList/css/bgmlist.min.css?v='.BangumiList_Plugin_VERSION.'" />';
+        echo '<link rel="stylesheet" href="/usr/plugins/BangumiList/css/bgmlist.css?v='.BangumiList_Plugin_VERSION.'" />';
     }  
 
     /**
@@ -96,7 +96,7 @@ class BangumiList_Plugin implements Typecho_Plugin_Interface
      */
     public static function footer()
     {
-        echo '<script type="text/javascript" src="/usr/plugins/BangumiList/js/bgmlist.min.js?v='.BangumiList_Plugin_VERSION.'"></script>';
+        echo '<script type="text/javascript" src="/usr/plugins/BangumiList/js/bgmlist.js?v='.BangumiList_Plugin_VERSION.'"></script>';
         if (!empty(Helper::options()->plugin('BangumiList')->bgmst) && in_array('jq', Helper::options()->plugin('BangumiList')->bgmst))
         {
             echo '<script type="text/javascript" src="/usr/plugins/BangumiList/js/jquery.min.js"></script>';
