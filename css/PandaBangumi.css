@@ -1,9 +1,29 @@
-.BGM-Content
+.PandaBangumi-Pager
+{
+  line-height:1em;
+  width:auto;
+  font-size: 1em;
+  border-radius: 3px;
+  border:0;
+  box-shadow: 0px 0px  4px 0px #aaa;
+  background-color: #fdf7f6;
+  color:#58666e;
+  padding: 4px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  margin-right:15px;
+}
+.PandaBangumi-Pager:hover
+{
+  color: black;
+}
+
+.PandaBangumi-Content
 {
     display: inline-block;
     width:100%;
 }
-.bgm-item
+.PandaBangumi-item
 {
     position: relative;
     height: 128px;
@@ -15,7 +35,7 @@
     float:left;
     background-color: #fdf7f6;
 }
-.bgm-thumb
+.PandaBangumi-thumb
 {
     position: absolute;   
     width: 128px;
@@ -27,7 +47,7 @@
     margin:0!important;
     padding:0!important;
 }
-.bgm-content
+.PandaBangumi-content
 {
     position: absolute;
     width: auto;
@@ -41,7 +61,7 @@
     text-overflow:ellipsis;
     white-space:nowrap;
 }
-.bgm-status-bar
+.PandaBangumi-status-bar
 {
     position: absolute;
     height: 12px;
@@ -50,7 +70,7 @@
     border-radius: 3px;
     background-color: #f3ab9a;
 }
-.bgm-content .bgm-content-title
+.PandaBangumi-content .PandaBangumi-content-title
 {
     font-size: 20px;
     line-height: 20px;
@@ -58,9 +78,15 @@
     margin:2px;
     margin-top:4px;
     font-weight: bolder;
-    text-decoration:none;
+    color: #58666e;
+    border-bottom-color: #222;
+    border-bottom: 1px solid #999;
 }
-.bgm-content .bgm-content-title-jp
+.PandaBangumi-content .PandaBangumi-content-title:hover
+{
+  color:black;
+}
+.PandaBangumi-content .PandaBangumi-content-title-jp
 {
     font-size: 16px;
     line-height: 16px;
@@ -69,20 +95,25 @@
     text-overflow:ellipsis;
     white-space:nowrap;
 }
-.bgm-content-des
+.PandaBangumi-content-des
 {
     font-size:13px!important;
     line-height: 14px!important;
     margin:4px!important;
     margin-top:4px!important;
 }
-#bgm-collections
+#PandaBangumi-collections-holder
 {
-    margin-top:10px;
     display: inline-block;
     width:100%;
 }
-#bgm-calendar
+#PandaBangumi-collections
+{
+
+    display: inline-block;
+    width:100%;
+}
+#PandaBangumi-calendar
 {
     margin-top:10px;
     display: block;

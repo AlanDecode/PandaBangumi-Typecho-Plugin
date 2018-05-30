@@ -267,7 +267,7 @@ function PrintCalendar($email, $password,$filePath)
         array_push($id_list,$value->id);
     }
 
-    $html='<div id="bgm-calendar"><h2>番剧日历</h2><hr>';
+    $html='<div id="PandaBangumi-calendar"><h3>番剧日历</h3><hr>';
     foreach ($calendar as $value) {
         $html.='<h4>'.$value->day_en.' . '.$value->day_cn.'</h4><p>/ ';
         foreach ($value->items as $bgmi) {
@@ -287,15 +287,40 @@ function PrintCalendar($email, $password,$filePath)
     return $html;
 }
 
-function PrintCollection($email, $password,$filePath)
+
+/**
+ * 返回请求的番剧列表
+ * @param $email        用户邮箱
+ * @param $password     用户密码
+ * @param $filePath     缓存文件路径
+ * @param $page         第 $page 页
+ * @param $perpage      每页数量
+ * @return string
+ */
+
+function PrintCollection($email, $password, $filePath, $page, $perpage, $with_holder)
 {
+    if($page<1) $page=1;
+
     $data = GetData($email, $password,$filePath);
     $collection=$data->collection;
 
-    $result='<div id="bgm-collections"><h2>我的追番清单</h2>';
-    
-    foreach($collection as $item)
-    {
+    if($perpage==-1) $perpage=count($collection);
+
+    $totalpage=ceil(count($collection)/$perpage);
+    if($page>$totalpage) $page=$totalpage;
+
+    $result='';
+    if($with_holder) $result.='<div id="PandaBangumi-collections-holder">';
+
+    $result.='
+    <div id="PandaBangumi-collections" pagenum="'.$page.'" totalpage="'.$totalpage.'"><h3>追番清单 | 第 '.$page.' 页 | 共 '.$totalpage.' 页</h3>
+    <div width="100%"><button class="PandaBangumi-Pager" id="PandaBangumi-pager-newer">上一页</button><button class="PandaBangumi-Pager" id="PandaBangumi-pager-older">下一页</button></div>
+    ';
+
+    for ($i=($page-1)*$perpage; $i < min($page*$perpage,count($collection)); $i++) 
+    { 
+        $item=$collection[$i];
         $name_cn=$item->name_cn;
         $name=$item->name;
         $air_date=$item->air_date;
@@ -306,16 +331,16 @@ function PrintCollection($email, $password,$filePath)
         $img_url=$item->img_url;
 
         $html='
-        <div class="bgm-item">
-            <img class="bgm-thumb" src="'.$img_url.'"/>
-            <div class="bgm-content">
-                <a href="'.$url.'" class="bgm-content-title" target="_blank">'.$name_cn.'</a>
-                <p class="bgm-content-title-jp">'.$name.'</p>
-                <p class="bgm-content-des">首播：'.$air_date.'</p>
-                <p class="bgm-content-des">播出：周'.$air_weekday.'</p>
-                <p class="bgm-content-des">进度：'.$ep_status.' / '.$ep_count.'</p>
+        <div class="PandaBangumi-item">
+            <img class="PandaBangumi-thumb" src="'.$img_url.'"/>
+            <div class="PandaBangumi-content">
+                <a href="'.$url.'" class="PandaBangumi-content-title" target="_blank">'.$name_cn.'</a>
+                <p class="PandaBangumi-content-title-jp">'.$name.'</p>
+                <p class="PandaBangumi-content-des">首播：'.$air_date.'</p>
+                <p class="PandaBangumi-content-des">播出：周'.$air_weekday.'</p>
+                <p class="PandaBangumi-content-des">进度：'.$ep_status.' / '.$ep_count.'</p>
             </div>
-            <div class="bgm-status-bar" data1="'.$ep_status.'" data2="'.$ep_count.'"></div>
+            <div class="PandaBangumi-status-bar" data1="'.$ep_status.'" data2="'.$ep_count.'"></div>
         </div>
         ';
 
@@ -323,49 +348,51 @@ function PrintCollection($email, $password,$filePath)
     }
 
     $result.='</div>';
+    if($with_holder) $result.='</div>';
 
     return $result;
 }
 
-class BangumiList_Action extends Widget_Abstract_Contents implements Widget_Interface_Do 
+class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Interface_Do 
 {
+    
+    /**
+     * 返回请求的 HTML
+     * @access public
+     */
+    
     public function action()
     {
-        $options = Helper::options();
-		$email = $options->plugin('BangumiList')->email;
-        $password = $options->plugin('BangumiList')->password;
-        $calp=$options->plugin('BangumiList')->calposition;
-        $filePath=__DIR__.'/json/bangumi.json';
-
-        
         $html='';
-
-        if (!empty(Helper::options()->plugin('BangumiList')->bgmst) && in_array('calendar', Helper::options()->plugin('BangumiList')->bgmst))
+        $options = Helper::options();
+		$email = $options->plugin('PandaBangumi')->email;
+        $password = $options->plugin('PandaBangumi')->password;
+        $filePath=__DIR__.'/json/bangumi.json';
+        $perpage=$options->plugin('PandaBangumi')->perpage;
+        $requestedpage=$_GET['page'];
+        
+        if($_GET['onlycollection']==0)
         {
-            if($calp=="top")
-            {
-                $html.=PrintCalendar($email, $password,$filePath);
-            }
-        }
-
-        if (!empty(Helper::options()->plugin('BangumiList')->bgmst) && in_array('collection', Helper::options()->plugin('BangumiList')->bgmst))
-        {
-            $html.=PrintCollection($email, $password,$filePath);
-        }
-
-        if (!empty(Helper::options()->plugin('BangumiList')->bgmst) && in_array('calendar', Helper::options()->plugin('BangumiList')->bgmst))
-        {
-            if($calp=="bottom")
+            if($options->plugin('PandaBangumi')->calendar=='top')
             {
                 $html.=PrintCalendar($email, $password,$filePath);
             }
 
-            if($calp!="bottom" && $calp!="top")
+            //显示番剧
+            if($options->plugin('PandaBangumi')->perpage!=0)
+            {
+                $html.=PrintCollection($emial, $password, $filePath, $requestedpage, $perpage, 1);
+            }
+
+            if($options->plugin('PandaBangumi')->calendar=='bottom')
             {
                 $html.=PrintCalendar($email, $password,$filePath);
             }
         }
-
+        else
+        {
+            $html.=PrintCollection($emial, $password, $filePath, $requestedpage, $perpage, 0);
+        }
 
         echo $html;
     }
