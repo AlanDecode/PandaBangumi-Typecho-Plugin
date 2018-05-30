@@ -1,3 +1,104 @@
+/*单个插入的番剧*/
+.PandaBangumi_Board
+{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    background-color: #fdf7f6;
+    height: auto;
+    min-height: 50px;
+    border-radius: 8px;
+    box-shadow: 0px 0px  8px 0px #aaa;
+    overflow: hidden;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+
+.PandaBangumi_Board_Img_Box
+{
+  position: absolute;
+  overflow: hidden;
+  top:7%;
+  bottom: 7%;
+  display: inline-block;
+  border-radius: 8px;
+  box-shadow: 0px 0px  8px 0px #aaa;
+  
+}
+.PandaBangumi_Board img
+{
+  width: 100%;
+  position: absolute;
+  margin:0!important;
+}
+.PandaBangumi_Board_Content
+{
+  position: absolute;
+  top:7%;
+  bottom:7%;
+  right: 10px;
+  margin-left: 10px;
+  overflow: hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+.PandaBangumi_Board_Content h2
+{
+  margin-top: 0!important;
+  margin-bottom: 0.1em!important;
+  padding-bottom: 0!important;
+  line-height: 1!important;
+  overflow: hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+.PandaBangumi_Board_Content h2 a
+{
+  overflow: hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+.PandaBangumi_Board_Content h4
+{
+  margin-bottom: 0.1em!important;
+  margin-top:0.1em!important;
+  overflow: hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+.PandaBangumi_Board_Summary
+{
+  width: 100%;
+  height:100%;
+  display: none;
+  position: absolute;
+  padding:15px;
+  padding-right: 45px;
+  border-radius: 8px;
+  box-shadow: 0px 0px  8px 0px #aaa;
+  background-color: rgba(0,0,0,0.85);
+  color: whitesmoke;
+  overflow: auto;
+  z-index:9;
+}
+.PandaBangumi_Board_Info_Button
+{
+  display: inline-block;
+  z-index: 10;
+  position: absolute;
+  top:12px;
+  right:15px;
+  height:32px;
+  width: 32px!important;
+  border-radius: 16px;
+  font-size: 24px;
+  font-weight: 500;
+  border:0;
+  box-shadow: 0px 0px  4px 0px #aaa;
+  background-color: #fdf7f6;
+  color:#58666e;
+}
+
 .PandaBangumi-Pager
 {
   line-height:1em;
@@ -299,16 +400,16 @@
 }
 
 @keyframes Shake-Shake{
-    0%{
-        text-shadow: 0 0 rgba(0, 255, 255, .5), 0 0 rgba(255, 0, 0, .5);
-    }
-    25%{
-        text-shadow: -2px 0 rgba(0, 255, 255, .5), 2px 0 rgba(255, 0, 0, .5);
-    }
-    50%{
-        text-shadow: -5px 0 rgba(0, 255, 255, .5), 3px 0 rgba(255, 0, 0, .5);
-    }
-    100%{
-        text-shadow: 3px 0 rgba(0, 255, 255, .5), 5px 0 rgba(255, 0, 0, .5);
-    }
+  0%{
+      text-shadow: 0 0 rgba(0, 255, 255, .5), 0 0 rgba(255, 0, 0, .5);
+  }
+  25%{
+      text-shadow: -1px 0 rgba(0, 255, 255, .5), 1px 0 rgba(255, 0, 0, .5);
+  }
+  50%{
+      text-shadow: -3px 0 rgba(0, 255, 255, .5), 2px 0 rgba(255, 0, 0, .5);
+  }
+  100%{
+      text-shadow: 2px 0 rgba(0, 255, 255, .5), 3px 0 rgba(255, 0, 0, .5);
+  }
 }

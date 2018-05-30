@@ -7,11 +7,11 @@
  * 
  * @package PandaBangumi
  * @author 熊猫小A
- * @version 0.95
+ * @version 0.99
  * @link https://imalan.cn
  */
 
-define('PandaBangumi_Plugin_VERSION', '0.95');
+define('PandaBangumi_Plugin_VERSION', '0.99');
 
 class PandaBangumi_Plugin implements Typecho_Plugin_Interface
 {
@@ -27,6 +27,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
         Typecho_Plugin::factory('Widget_Archive')->header = array('PandaBangumi_Plugin', 'header');
         Typecho_Plugin::factory('Widget_Archive')->footer = array('PandaBangumi_Plugin', 'footer');
         Helper::addRoute("route_PandaBangumi","/PandaBangumi","PandaBangumi_Action",'action');
+        //Helper::addRoute("route_PandaBangumi_Board","/PandaBangumi_Board","PandaBangumi_Action",'getBoard');
     }
 
     /**
@@ -40,6 +41,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
     public static function deactivate()
     {
         Helper::removeRoute("route_PandaBangumi");
+       // Helper::removeRoute("route_PandaBangumi_Board");
     }
 
     /**

@@ -174,7 +174,7 @@ class BangumiAPI
 
 
     //GET 方法
-    private static function curl_get_contents($_url)
+    public static function curl_get_contents($_url)
     {
         $myCurl = curl_init($_url);
         //不验证证书
@@ -190,7 +190,7 @@ class BangumiAPI
     }
 
     //POST 方法
-    private static function curl_post_contents($_url, $_postdata)
+    public static function curl_post_contents($_url, $_postdata)
     {
         $myCurl = curl_init($_url);
         //不验证证书
@@ -366,6 +366,44 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
     
     public function action()
     {
+        if($_GET['getboard']==1)
+        {
+            $html='';
+            $id=$_GET['id'];
+            $res=json_decode(BangumiAPI::curl_get_contents('https://api.bgm.tv/subject/'.(string)$id));
+            
+            $img_url=$res->images->large;
+            $url=$res->url;
+            $name=$res->name;
+            $name_cn=$res->name_cn;
+            $summary=$res->summary;
+            $rating=$res->rating->score;
+            $rank=$res->rank;
+            $air_date=$res->air_date;
+            $air_weekday=$res->air_weekday;
+            $eps_count=$res->eps_count; 
+            
+            if(!$eps_count || $eps_count=='' || $eps_count==0) $eps_count='Unknown';
+            
+            $html.='<button class="PandaBangumi_Board_Info_Button">i</button>
+            <div class="PandaBangumi_Board_Summary">'.$summary.'</div>
+            <div class="PandaBangumi_Board_Img_Box"><img class="PandaBangumi_Board_img" src="'.$img_url.'"/></div>
+            <div class="PandaBangumi_Board_Content"><h2 class="PandaBangumi_Board_title_cn"><a href="'.$url.'" target="_blank">'.$name_cn.'</a></h2>
+            <h4 class="PandaBangumi_Board_title">'.$name.'</h4>
+            <p class="PandaBangumi_Board_info" style="margin-top:0.2em">评分：'.$rating.'
+            <br>排名：'.$rank.'
+            <br>首播日：'.$air_date.'
+            <br>播放日：周'.$air_weekday.'
+            <br>总集数：'.$eps_count.'</p></div>
+            ';
+
+            echo $html;  
+            return;      
+        }
+        
+        
+        
+        
         $html='';
         $options = Helper::options();
 		$email = $options->plugin('PandaBangumi')->email;

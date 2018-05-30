@@ -56,6 +56,33 @@ function PandaBangumi_UpdateAll()
     }
 }
 
+function PandaBangumi_UpdateBoards()
+{
+    var h=Math.min(256,Math.floor($(".PandaBangumi_Board").width()*0.45));
+    $(".PandaBangumi_Board").css("height",h+"px");
+    $(".PandaBangumi_Board_Img_Box").css("width",$(".PandaBangumi_Board_Img_Box").height()+"px");
+    var tp=Math.floor(($(".PandaBangumi_Board").height()-$(".PandaBangumi_Board_Img_Box").height())/2);
+    $(".PandaBangumi_Board_Img_Box").css("left",tp+"px");
+    $(".PandaBangumi_Board_Content").css("left",Math.floor(1.8*tp+$(".PandaBangumi_Board_Img_Box").width())+"px");
+    $(".PandaBangumi_Board_title_cn").css("font-size",tp*2+"px");
+    $(".PandaBangumi_Board_title").css("font-size",tp*1.3+"px");
+    $(".PandaBangumi_Board_info").css("line-height",tp*1.6+"px")
+    $(".PandaBangumi_Board_info").css("font-size",tp*1.3+"px");
+    $(".PandaBangumi_Board_Info_Button").click(function(){
+        if($(this).next().css("display")=="none")
+        {
+            $(this).next().fadeIn(400);
+            $(this).html("×");
+        }
+        else if($(this).next().css("opacity")==1)
+        {
+            $(this).next().fadeOut(400);
+            $(this).html("i");
+        }
+        
+    })
+}
+
 function PandaBangumi_TurnPage(dPage)
 {
     var newPage=parseInt(document.getElementById("PandaBangumi-collections").getAttribute("pagenum"))+dPage;
@@ -101,7 +128,25 @@ PandaBangumi_initBGM=function()
             });
         },500)
     }
+
+    $(".PandaBangumi_Board").html("<div class=\"bangumi_loading\"><div class=\"loading-anim\"><div class=\"border out\"><\/div><div class=\"border in\"><\/div><div class=\"border mid\"><\/div><div class=\"circle\"><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><\/div>");
+
+    $(".PandaBangumi_Board").each(function(){
+        var obj=$(this);
+        jQuery.ajax({
+            type:'GET',
+            url:'/index.php/PandaBangumi?getboard=1&id='+$(this).attr("data"),
+            success:function(res){
+                obj.empty().append(res);
+                PandaBangumi_UpdateBoards();
+            },
+            error:function(){
+                obj.empty().append('加载失败，真是悲伤……');
+            }
+        });
+    });
 }
 
 $(document).ready(PandaBangumi_initBGM);
 $(window).resize(PandaBangumi_UpdateAll);
+$(window).resize(PandaBangumi_UpdateBoards);
