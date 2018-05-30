@@ -372,7 +372,7 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
             $id=$_GET['id'];
             $res=json_decode(BangumiAPI::curl_get_contents('https://api.bgm.tv/subject/'.(string)$id));
             
-            $img_url=$res->images->large;
+            $img_url=str_replace("http://", "https://",$res->images->large);
             $url=$res->url;
             $name=$res->name;
             $name_cn=$res->name_cn;
