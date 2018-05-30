@@ -43,14 +43,15 @@ class BangumiAPI
     //初始化对象
     public function init($_userName, $_passWord)
     {
+        $this->userName = $_userName;
+        $this->passWord = $_passWord;
+        
         if ($_userName == null || $_passWord == null) 
         {
             //程序返回
             echo "初始化参数错误！";
             return;
         }
-        $this->userName = $_userName;
-        $this->passWord = $_passWord;
 
         //登录 API 初始化
         $this->loginApi = BangumiAPI::$apiUrl . "/auth?source=" . BangumiAPI::$appName;
@@ -206,7 +207,7 @@ class BangumiAPI
 
 /*一些功能函数*/
 
-function UpdateData($email, $password,$filePath)
+function UpdateData($email, $password, $filePath)
 {
     $bangumi = BangumiAPI::GetInstance();
     $bangumi->init($email, $password);
@@ -230,6 +231,7 @@ function UpdateData($email, $password,$filePath)
 function GetData($email, $password,$filePath)
 {
     $fp = fopen($filePath, 'r');
+
 
     if($fp)//数据文件存在
     {
@@ -257,6 +259,7 @@ function GetData($email, $password,$filePath)
 
 function PrintCalendar($email, $password,$filePath)
 {
+    
     $data = GetData($email, $password,$filePath);
     $calendar=$data->cal;
     $collection=$data->collection;
@@ -370,6 +373,7 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
         $filePath=__DIR__.'/json/bangumi.json';
         $perpage=$options->plugin('PandaBangumi')->perpage;
         $requestedpage=$_GET['page'];
+
         
         if($_GET['onlycollection']==0)
         {
@@ -381,7 +385,7 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
             //显示番剧
             if($options->plugin('PandaBangumi')->perpage!=0)
             {
-                $html.=PrintCollection($emial, $password, $filePath, $requestedpage, $perpage, 1);
+                $html.=PrintCollection($email, $password, $filePath, $requestedpage, $perpage, 1);
             }
 
             if($options->plugin('PandaBangumi')->calendar=='bottom')
