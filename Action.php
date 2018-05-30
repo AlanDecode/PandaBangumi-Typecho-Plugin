@@ -267,7 +267,7 @@ function PrintCalendar($email, $password,$filePath)
         array_push($id_list,$value->id);
     }
 
-    $html='<div id="PandaBangumi-calendar"><h3>番剧日历</h3><hr>';
+    $html='<div id="PandaBangumi-calendar"><h2 style="margin:0">番剧日历</h2><hr>';
     foreach ($calendar as $value) {
         $html.='<h4>'.$value->day_en.' . '.$value->day_cn.'</h4><p>/ ';
         foreach ($value->items as $bgmi) {
@@ -314,8 +314,8 @@ function PrintCollection($email, $password, $filePath, $page, $perpage, $with_ho
     if($with_holder) $result.='<div id="PandaBangumi-collections-holder">';
 
     $result.='
-    <div id="PandaBangumi-collections" pagenum="'.$page.'" totalpage="'.$totalpage.'"><h3>追番清单 | 第 '.$page.' 页 | 共 '.$totalpage.' 页</h3>
-    <div width="100%"><button class="PandaBangumi-Pager" id="PandaBangumi-pager-newer">上一页</button><button class="PandaBangumi-Pager" id="PandaBangumi-pager-older">下一页</button></div>
+    <div id="PandaBangumi-collections" pagenum="'.$page.'" totalpage="'.$totalpage.'"><h2 style="margin:0">追番清单</h2>
+    <div width="100%">第 '.$page.' 页 | 共 '.$totalpage.' 页 | <button class="PandaBangumi-Pager" id="PandaBangumi-pager-newer">上一页</button><button class="PandaBangumi-Pager" id="PandaBangumi-pager-older">下一页</button></div>
     ';
 
     for ($i=($page-1)*$perpage; $i < min($page*$perpage,count($collection)); $i++) 

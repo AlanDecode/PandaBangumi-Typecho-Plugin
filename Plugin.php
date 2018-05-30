@@ -2,16 +2,16 @@
 
 <?php
 /**
- * 给博客添加精美的追番展示页吧！
+ * 给博客添加精美的番剧展示页吧！
  *  
  * 
  * @package PandaBangumi
  * @author 熊猫小A
- * @version 0.92
+ * @version 0.95
  * @link https://imalan.cn
  */
 
-define('PandaBangumi_Plugin_VERSION', '0.92');
+define('PandaBangumi_Plugin_VERSION', '0.95');
 
 class PandaBangumi_Plugin implements Typecho_Plugin_Interface
 {

@@ -78,13 +78,9 @@
     margin:2px;
     margin-top:4px;
     font-weight: bolder;
-    color: #58666e;
-    border-bottom-color: #222;
-    border-bottom: 1px solid #999;
-}
-.PandaBangumi-content .PandaBangumi-content-title:hover
-{
-  color:black;
+    overflow: hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
 }
 .PandaBangumi-content .PandaBangumi-content-title-jp
 {
@@ -109,7 +105,6 @@
 }
 #PandaBangumi-collections
 {
-
     display: inline-block;
     width:100%;
 }
