@@ -52,12 +52,18 @@
   overflow: hidden!important;
   text-overflow:ellipsis!important;
   white-space:nowrap!important;
+  color:#58666e!important;
+}
+.PandaBangumi_Board_Content h2:hover
+{
+  color:black;
 }
 .PandaBangumi_Board_Content h2 a
 {
   overflow: hidden!important;
   text-overflow:ellipsis!important;
   white-space:nowrap!important;
+  color:#404040!important;
 }
 .PandaBangumi_Board_Content h4
 {
@@ -66,6 +72,11 @@
   overflow: hidden!important;
   text-overflow:ellipsis!important;
   white-space:nowrap!important;
+  color:#404040!important;
+}
+.PandaBangumi_Board_Content p
+{
+  color: #58666e!important;
 }
 .PandaBangumi_Board_Summary
 {
@@ -99,6 +110,10 @@
   background-color: #fdf7f6;
   color:#58666e;
 }
+
+
+
+/*以下是追番列表样式*/
 
 .PandaBangumi-Pager
 {
@@ -183,6 +198,11 @@
     overflow: hidden!important;
     text-overflow:ellipsis!important;
     white-space:nowrap!important;
+    color: #58666e!important;
+}
+.PandaBangumi-content .PandaBangumi-content-title:hover
+{
+  color: #404040!important;
 }
 .PandaBangumi-content .PandaBangumi-content-title-jp
 {
@@ -192,6 +212,7 @@
     overflow: hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+    color: #404040!important;
 }
 .PandaBangumi-content-des
 {
@@ -199,6 +220,7 @@
     line-height: 14px!important;
     margin:4px!important;
     margin-top:4px!important;
+    color: #58666e!important;
 }
 #PandaBangumi-collections-holder
 {
