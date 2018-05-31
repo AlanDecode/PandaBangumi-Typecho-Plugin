@@ -1,4 +1,4 @@
-var PandaBangumi_loading_notice="<div class=\"bangumi_loading\"><div class=\"loading-anim\"><div class=\"border out\"><\/div><div class=\"border in\"><\/div><div class=\"border mid\"><\/div><div class=\"circle\"><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><\/div><div class=\"bangumi_loading_text\" style=\"margin-top:50px\"><center><h2 class=\"loading-text\">Loading...<\/h2><\/center><center><h4 class=\"loading-text\">跟我一起抖动可以使页面加载更快<\/h4><\/center><\/div><\/div><\/div>";
+var PandaBangumi_loading_notice="<div class=\"PandaBangumi-loading\">Loading...<br>ヾ(≧∇≦*)ゝ</div>";
 
 function PandaBangumi_getElementsClass(classnames)
 { 
@@ -129,7 +129,7 @@ PandaBangumi_initBGM=function()
         },500)
     }
 
-    $(".PandaBangumi_Board").html("<div class=\"bangumi_loading\"><div class=\"loading-anim\"><div class=\"border out\"><\/div><div class=\"border in\"><\/div><div class=\"border mid\"><\/div><div class=\"circle\"><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><span class=\"dot\"><\/span><\/div>");
+    $(".PandaBangumi_Board").html(PandaBangumi_loading_notice);
 
     $(".PandaBangumi_Board").each(function(){
         var obj=$(this);
