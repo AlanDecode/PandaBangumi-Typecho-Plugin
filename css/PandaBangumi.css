@@ -13,6 +13,24 @@
     margin-top:20px;
     margin-bottom: 20px;
 }
+.PandaBangumi_Board:hover
+{
+  background-color: #f2f3f2;
+}
+.PandaBangumi_Board_showSummary
+{
+  position: absolute;
+  display: none;
+  line-height: 1.2em;
+  padding: 0.5em;
+  right:0.2em;
+  bottom:0.2em;
+  border-radius: 8px;
+  border:0;
+  box-shadow: 0px 0px  4px 0px #aaa;
+  background-color: #fdf7f6;
+  color:#58666e;
+}
 
 .PandaBangumi_Board_Img_Box
 {
@@ -47,23 +65,23 @@
 {
   margin-top: 0!important;
   margin-bottom: 0.1em!important;
-  padding-bottom: 0!important;
+  padding-bottom: 0.1em!important;
   line-height: 1!important;
   overflow: hidden!important;
   text-overflow:ellipsis!important;
   white-space:nowrap!important;
   color:#58666e!important;
 }
-.PandaBangumi_Board_Content h2:hover
+.PandaBangumi_Board_Content h2 a:hover
 {
-  color:black;
+  color:#f3ab9a!important;
 }
 .PandaBangumi_Board_Content h2 a
 {
   overflow: hidden!important;
   text-overflow:ellipsis!important;
   white-space:nowrap!important;
-  color:#404040!important;
+  color:#58666e!important;
 }
 .PandaBangumi_Board_Content h4
 {
@@ -85,30 +103,12 @@
   display: none;
   position: absolute;
   padding:15px;
-  padding-right: 45px;
   border-radius: 8px;
   box-shadow: 0px 0px  8px 0px #aaa;
   background-color: rgba(0,0,0,0.85);
   color: whitesmoke;
   overflow: auto;
   z-index:9;
-}
-.PandaBangumi_Board_Info_Button
-{
-  display: inline-block;
-  z-index: 10;
-  position: absolute;
-  top:12px;
-  right:15px;
-  height:32px;
-  width: 32px!important;
-  border-radius: 16px;
-  font-size: 24px;
-  font-weight: 500;
-  border:0;
-  box-shadow: 0px 0px  4px 0px #aaa;
-  background-color: #fdf7f6;
-  color:#58666e;
 }
 
 

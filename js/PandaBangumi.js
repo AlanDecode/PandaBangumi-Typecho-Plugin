@@ -58,7 +58,7 @@ function PandaBangumi_UpdateAll()
 
 function PandaBangumi_UpdateBoards()
 {
-    var h=Math.min(256,Math.floor($(".PandaBangumi_Board").width()*0.45));
+    var h=Math.min(300,Math.floor($(".PandaBangumi_Board").width()*0.5));
     $(".PandaBangumi_Board").css("height",h+"px");
     $(".PandaBangumi_Board_Img_Box").css("width",$(".PandaBangumi_Board_Img_Box").height()+"px");
     var tp=Math.floor(($(".PandaBangumi_Board").height()-$(".PandaBangumi_Board_Img_Box").height())/2);
@@ -68,22 +68,31 @@ function PandaBangumi_UpdateBoards()
     $(".PandaBangumi_Board_title").css("font-size",tp*1.3+"px");
     $(".PandaBangumi_Board_info").css("line-height",tp*1.6+"px")
     $(".PandaBangumi_Board_info").css("font-size",tp*1.3+"px");
-    $(".PandaBangumi_Board_Info_Button").click(function(){
-        if($(this).next().css("display")=="none")
-        {
-            $(this).next().fadeIn(400);
-            $(this).html("×");
-        }
-        else if($(this).next().css("opacity")==1)
-        {
-            $(this).next().fadeOut(400);
-            $(this).html("i");
-        }
-        
-    })
+
+    if (!isMobile) {
+        $(".PandaBangumi_Board_Img_Box").hover(function(){
+            $(this).next().fadeIn(350);
+        })
+        $(".PandaBangumi_Board_Summary").hover(function(){},function(){
+            $(this).fadeOut(350);
+        });
+    }
+    else 
+    {
+        $(".PandaBangumi_Board_showSummary").css("display","block");
+        $(".PandaBangumi_Board_showSummary").click(function(){
+            $(".PandaBangumi_Board_Summary").fadeIn(350);
+        })
+        $(document).click(function(e){ 
+            e = window.event || e; // 兼容IE7
+            obj = $(e.srcElement || e.target);
+            if(obj.attr("class")=="PandaBangumi_Board_Summary")
+            {obj.fadeOut(350);} 
+        });
+    }
 }
 
-function PandaBangumi_TurnPage(dPage)
+function PandaBangumi_turnPage(dPage)
 {
     var newPage=parseInt(document.getElementById("PandaBangumi-collections").getAttribute("pagenum"))+dPage;
     
@@ -96,8 +105,8 @@ function PandaBangumi_TurnPage(dPage)
             success: function(res) {
                 $('#PandaBangumi-collections-holder').empty().append(res);
                 PandaBangumi_UpdateAll();
-                $("#PandaBangumi-pager-newer").click(function() {PandaBangumi_TurnPage(-1)});
-                $("#PandaBangumi-pager-older").click(function() {PandaBangumi_TurnPage(1)});
+                $("#PandaBangumi-pager-newer").click(function() {PandaBangumi_turnPage(-1)});
+                $("#PandaBangumi-pager-older").click(function() {PandaBangumi_turnPage(1)});
             },
             error:function(){
                 $('#PandaBangumi-collections-holder').empty().text('加载失败');
@@ -119,8 +128,8 @@ PandaBangumi_initBGM=function()
                 success: function(res) {
                     $('#PandaBangumi-Content').empty().append(res);
                     PandaBangumi_UpdateAll();
-                    $("#PandaBangumi-pager-newer").click(function() {PandaBangumi_TurnPage(-1)});
-                    $("#PandaBangumi-pager-older").click(function() {PandaBangumi_TurnPage(1)});
+                    $("#PandaBangumi-pager-newer").click(function() {PandaBangumi_turnPage(-1)});
+                    $("#PandaBangumi-pager-older").click(function() {PandaBangumi_turnPage(1)});
                 },
                 error:function(){
                     $('#PandaBangumi-Content').empty().text('加载失败');
