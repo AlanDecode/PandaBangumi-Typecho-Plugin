@@ -53,6 +53,13 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
      */
     public static function config(Typecho_Widget_Helper_Form $form){
         echo '<p>账号密码仅用于拉取数据，我不会收集你的信息。<br />可以选择是否开启追番列表展示或者追番日历展示。</p>';
+        echo '作者：<a href="http://imalan.cn">熊猫小A</a>，插件介绍页：<a href="https://imalan.cn/archives/128/">熊猫追番 (PandaBangumi) for Typecho</a><br>';
+        echo '<br><strong>使用方法：</strong><br>';
+        echo '<strong>展示追番列表与追番日历</strong><br>在文章要插入的地方写: ';
+        echo htmlspecialchars('<div class="PandaBangumi-Content" id="PandaBangumi-Content"></div>');
+        echo '<br><strong>展示单部番剧</strong><br>在要插入的地方写: ';
+        echo htmlspecialchars('<div class="PandaBangumi_Board" data="【番组ID】"></div>');
+        echo '，将【番组ID】替换为要展示的番剧的ID，这个ID可以从 Bangumi 番剧主页地址栏获取。<br>';
 
         $email = new Typecho_Widget_Helper_Form_Element_Text('email', NULL, '', _t('账号邮箱'), _t('填写 Bangumi 账号邮箱'));
         $form->addInput($email);
