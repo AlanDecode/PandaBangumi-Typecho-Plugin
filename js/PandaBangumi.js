@@ -1,43 +1,20 @@
 var PandaBangumi_loading_notice="<div class=\"PandaBangumi-loading\">Loading...<br>ヾ(≧∇≦*)ゝ</div>";
-console.log('%c PandaBangumi 0.99.1 %c https://imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
-
-function PandaBangumi_getElementsClass(classnames)
-{ 
-    var classobj= new Array();//定义数组 
-    var classint=0;//定义数组的下标 
-    var tags=document.getElementsByTagName("*");//获取HTML的所有标签 
-    for(var i in tags)
-    {//对标签进行遍历 
-        if(tags[i].nodeType==1)
-        {//判断节点类型 
-            if(tags[i].getAttribute("class") == classnames)//判断和需要CLASS名字相同的，并组成一个数组 
-            { 
-                classobj[classint]=tags[i]; 
-                classint++; 
-            } 
-        }
-    }
-    return classobj;//返回组成的数组 
-}
+console.log('%c PandaBangumi 0.99.2 %c https://imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
 
 function PandaBangumi_UpdateStatusBar()
 {
-    var bgm_bars=PandaBangumi_getElementsClass("PandaBangumi-status-bar");
-    for(var i=0;i<bgm_bars.length;i++)
-    {  
-        var status=bgm_bars[i].getAttribute("data1");
-        var count=bgm_bars[i].getAttribute("data2");
+    $(".PandaBangumi-status-bar").each(function(){
+        var status=$(this).attr("data1");
+        var count=$(this).attr("data2");
         var w;
-        if(count!=='Unknown')
-        {
-            w=Math.floor($(".PandaBangumi-content").width()*status/count);
+        if (count !== 'Unknown') {
+            w = Math.floor($(".PandaBangumi-content").width() * status / count);
         }
-        else
-        {
-            w=Math.floor($(".PandaBangumi-content").width()); 
+        else {
+            w = Math.floor($(".PandaBangumi-content").width());
         }
-        bgm_bars[i].setAttribute("style","width:"+String(w)+"px");
-    }
+        $(this).css("width",String(w)+"px");
+    })
 }
 
 function PandaBangumi_UpdateAll()
