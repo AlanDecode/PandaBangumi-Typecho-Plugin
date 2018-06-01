@@ -406,8 +406,6 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
         }
         
         
-        
-        
         $html='';
         $options = Helper::options();
 		$email = $options->plugin('PandaBangumi')->email;
@@ -416,7 +414,20 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
         $perpage=$options->plugin('PandaBangumi')->perpage;
         $requestedpage=$_GET['page'];
 
-        
+        if($_GET['cleancache']==1)
+        {
+            if(unlink($filePath))
+            {
+                echo '清除成功，去刷新页面看看吧～';
+                return;
+            }
+            else
+            {
+                echo '没有清除掉……是不是权限不对？还是本来就没有缓存？';
+            }
+            return;
+        }
+
         if($_GET['onlycollection']==0)
         {
             if($options->plugin('PandaBangumi')->calendar=='top')

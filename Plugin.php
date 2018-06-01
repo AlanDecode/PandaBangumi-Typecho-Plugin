@@ -7,11 +7,11 @@
  * 
  * @package PandaBangumi
  * @author 熊猫小A
- * @version 0.99.2
+ * @version 0.99.3
  * @link https://imalan.cn
  */
 
-define('PandaBangumi_Plugin_VERSION', '0.99.2');
+define('PandaBangumi_Plugin_VERSION', '0.99.3');
 
 class PandaBangumi_Plugin implements Typecho_Plugin_Interface
 {
@@ -59,7 +59,8 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
         echo htmlspecialchars('<div class="PandaBangumi-Content" id="PandaBangumi-Content"></div>');
         echo '<br><strong>展示单部番剧</strong><br>在要插入的地方写: ';
         echo htmlspecialchars('<div class="PandaBangumi_Board" data="【番组ID】"></div>');
-        echo '，将【番组ID】替换为要展示的番剧的ID，这个ID可以从 Bangumi 番剧主页地址栏获取。<br>';
+        echo '，将【番组ID】替换为要展示的番剧的ID，这个ID可以从 Bangumi 番剧主页地址栏获取。<br><br>';
+        echo '点这里可以手动删除缓存文件，下次加载会从 Bangumi 拉取数据<br><a href="/index.php/PandaBangumi?cleancache=1" target="_blank"><button class="btn" style="outline: 0">' . _t('手动清除缓存'). '</button></a>';
 
         $email = new Typecho_Widget_Helper_Form_Element_Text('email', NULL, '', _t('账号邮箱'), _t('填写 Bangumi 账号邮箱'));
         $form->addInput($email);
