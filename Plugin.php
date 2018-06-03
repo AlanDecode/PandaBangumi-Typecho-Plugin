@@ -7,11 +7,11 @@
  * 
  * @package PandaBangumi
  * @author 熊猫小A
- * @version 0.99.4
+ * @version 0.99.5
  * @link https://imalan.cn
  */
 
-define('PandaBangumi_Plugin_VERSION', '0.99.4');
+define('PandaBangumi_Plugin_VERSION', '0.99.5');
 
 class PandaBangumi_Plugin implements Typecho_Plugin_Interface
 {

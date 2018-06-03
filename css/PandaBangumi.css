@@ -10,8 +10,8 @@
     border-radius: 8px;
     box-shadow: 0px 0px  8px 0px #aaa;
     overflow: hidden;
-    margin-top:20px;
-    margin-bottom: 20px;
+    margin-top:0;
+    margin-bottom: 0;
 }
 .PandaBangumi_Board:hover
 {
