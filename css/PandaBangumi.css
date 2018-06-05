@@ -15,7 +15,7 @@
 }
 .PandaBangumi_Board:hover
 {
-  background-color: #f2f3f2;
+  background-color: #eae9e8;
 }
 .PandaBangumi_Board_showSummary
 {
@@ -151,6 +151,10 @@
     margin-bottom: 20px;
     float:left;
     background-color: #fdf7f6;
+}
+.PandaBangumi-item:hover
+{
+    background-color: #eae9e8;
 }
 .PandaBangumi-thumb
 {

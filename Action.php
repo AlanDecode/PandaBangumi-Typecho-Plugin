@@ -334,7 +334,7 @@ function PrintCollection($email, $password, $filePath, $page, $perpage, $with_ho
         $img_url=$item->img_url;
 
         $html='
-        <div class="PandaBangumi-item">
+        <div class="PandaBangumi-item" onclick="window.open(\''.$url.'\')">
             <img class="PandaBangumi-thumb" src="'.$img_url.'"/>
             <div class="PandaBangumi-content">
                 <a href="'.$url.'" class="PandaBangumi-content-title" target="_blank">'.$name_cn.'</a>
@@ -387,7 +387,7 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
             
             $html.='<div class="PandaBangumi_Board_Img_Box"><img class="PandaBangumi_Board_img" src="'.$img_url.'"/></div>
             <div class="PandaBangumi_Board_Summary">'.$summary.'</div>
-            <div class="PandaBangumi_Board_Content">
+            <div class="PandaBangumi_Board_Content" onclick="window.open(\''.$url.'\')">
                 <h2 class="PandaBangumi_Board_title_cn"><a href="'.$url.'" target="_blank">'.$name_cn.'</a></h2>
                 <h4 class="PandaBangumi_Board_title">'.$name.'</h4>
                 <p class="PandaBangumi_Board_info" style="margin-top:0.2em">
