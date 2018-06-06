@@ -318,7 +318,11 @@ function PrintCollection($email, $password, $filePath, $page, $perpage, $with_ho
 
     $result.='
     <div id="PandaBangumi-collections" pagenum="'.$page.'" totalpage="'.$totalpage.'"><h2 style="margin:0">追番清单</h2>
-    <div width="100%">第 '.$page.' 页 | 共 '.$totalpage.' 页 | <button class="PandaBangumi-Pager" id="PandaBangumi-pager-newer">上一页</button><button class="PandaBangumi-Pager" id="PandaBangumi-pager-older">下一页</button></div>
+    <div width="100%">第 '.$page.' 页 | 共 '.$totalpage.' 页 | 
+    <button class="PandaBangumi-Pager" id="PandaBangumi-pager-newer">上一页</button>
+    <button class="PandaBangumi-Pager" id="PandaBangumi-pager-older">下一页</button>
+    <button class="PandaBangumi-Pager" id="PandaBangumi-pager-refresh">刷新</button>
+    </div>
     ';
 
     for ($i=($page-1)*$perpage; $i < min($page*$perpage,count($collection)); $i++) 
@@ -405,7 +409,7 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
             return;      
         }
         
-        
+
         $html='';
         $options = Helper::options();
 		$email = $options->plugin('PandaBangumi')->email;
@@ -413,6 +417,15 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
         $filePath=__DIR__.'/json/bangumi.json';
         $perpage=$options->plugin('PandaBangumi')->perpage;
         $requestedpage=$_GET['page'];
+
+
+        /**
+        * 如果强制刷新缓存
+        */
+        if($_GET['forcerefresh']=='true')
+        {
+            UpdateData($email, $password, $filePath);
+        }
 
         if($_GET['cleancache']==1)
         {

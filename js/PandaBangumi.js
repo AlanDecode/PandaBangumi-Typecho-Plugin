@@ -1,5 +1,5 @@
 var PandaBangumi_loading_notice="<div class=\"PandaBangumi-loading\">Loading...<br>ヾ(≧∇≦*)ゝ</div>";
-console.log('%c PandaBangumi 0.99.6 %c https://imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
+console.log('%c PandaBangumi 0.99.7 %c https://imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
 
 function PandaBangumi_UpdateStatusBar()
 {
@@ -85,12 +85,38 @@ function PandaBangumi_turnPage(dPage)
                 PandaBangumi_UpdateAll();
                 $("#PandaBangumi-pager-newer").click(function() {PandaBangumi_turnPage(-1)});
                 $("#PandaBangumi-pager-older").click(function() {PandaBangumi_turnPage(1)});
+                $("#PandaBangumi-pager-refresh").click(PandaBangumi_refresh);
             },
             error:function(){
                 $('#PandaBangumi-collections-holder').empty().text('加载失败');
             }
         });
     },500)
+}
+
+PandaBangumi_refresh=function()
+{
+    if(document.getElementById("PandaBangumi-Content"))
+    {
+        $(".PandaBangumi-Content").html(PandaBangumi_loading_notice);
+        
+        setTimeout(function(){
+            jQuery.ajax({
+                type: 'GET',
+                url: '/index.php/PandaBangumi?page=1&onlycollection=0&forcerefresh=true',
+                success: function(res) {
+                    $('#PandaBangumi-Content').empty().append(res);
+                    PandaBangumi_UpdateAll();
+                    $("#PandaBangumi-pager-newer").click(function() {PandaBangumi_turnPage(-1)});
+                    $("#PandaBangumi-pager-older").click(function() {PandaBangumi_turnPage(1)});
+                    $("#PandaBangumi-pager-refresh").click(PandaBangumi_refresh);
+                },
+                error:function(){
+                    $('#PandaBangumi-Content').empty().text('加载失败');
+                }
+            });
+        },500)
+    }
 }
 
 PandaBangumi_initBGM=function()
@@ -108,6 +134,7 @@ PandaBangumi_initBGM=function()
                     PandaBangumi_UpdateAll();
                     $("#PandaBangumi-pager-newer").click(function() {PandaBangumi_turnPage(-1)});
                     $("#PandaBangumi-pager-older").click(function() {PandaBangumi_turnPage(1)});
+                    $("#PandaBangumi-pager-refresh").click(PandaBangumi_refresh);
                 },
                 error:function(){
                     $('#PandaBangumi-Content').empty().text('加载失败');
