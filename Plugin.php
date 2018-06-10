@@ -7,11 +7,11 @@
  * 
  * @package PandaBangumi
  * @author 熊猫小A
- * @version 0.99.7
+ * @version 1.0
  * @link https://imalan.cn
  */
 
-define('PandaBangumi_Plugin_VERSION', '0.99.7');
+define('PandaBangumi_Plugin_VERSION', '1.0');
 
 class PandaBangumi_Plugin implements Typecho_Plugin_Interface
 {
@@ -82,8 +82,9 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
 
         $bgmst= new Typecho_Widget_Helper_Form_Element_Checkbox(
             'bgmst',  
-            array('jq'=>_t('配置是否引入 JQuery：勾选则引入不勾选则不引入<br>')),
-            array('jq'), _t('基本设置'));
+            array('jq'=>_t('配置是否引入 JQuery：勾选则引入不勾选则不引入<br>'),
+                    'darkmode'=>_t('开启暗色模式：勾选则开启')),
+            array('jq','darkmode'), _t('基本设置'));
         $form->addInput($bgmst);
     }
 
@@ -117,6 +118,27 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
         {
             echo '<script>var isMobile=false</script>';
         }
+
+        if (!empty(Helper::options()->plugin('PandaBangumi')->bgmst) && in_array('darkmode', Helper::options()->plugin('PandaBangumi')->bgmst))
+        {
+            echo '
+                <style>
+                .PandaBangumi_Board{background:rgba(0,0,0,.8)}
+                .PandaBangumi_Board:hover{background:rgba(40,40,40,.8)}
+                .PandaBangumi_Board_Img_Box{box-shadow:none}
+                .PandaBangumi_Board_Content h2 a{color:#fff!important}
+                .PandaBangumi_Board_Content h4{color:#f0f0f0!important}
+                .PandaBangumi_Board_Content p{color:#fff!important}
+                .PandaBangumi-item{background:rgba(0,0,0,.8)}
+                .PandaBangumi-item:hover{background:rgba(40,40,40,.8)}
+                .PandaBangumi-content .PandaBangumi-content-title{color:#fff!important}
+                .PandaBangumi-content .PandaBangumi-content-title:hover{color:#f0f0f0!important}
+                .PandaBangumi-content .PandaBangumi-content-title-jp{color:#f0f0f0!important}
+                .PandaBangumi-content-des{color:#fff!important}
+                .PandaBangumi-status-bar{background-color:pink}
+                </style>
+                ';
+        }   
     }  
 
     /**

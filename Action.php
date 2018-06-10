@@ -391,7 +391,7 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
             
             $html.='<div class="PandaBangumi_Board_Img_Box"><img class="PandaBangumi_Board_img" src="'.$img_url.'"/></div>
             <div class="PandaBangumi_Board_Summary">'.$summary.'</div>
-            <div class="PandaBangumi_Board_Content" onclick="window.open(\''.$url.'\')">
+            <div class="PandaBangumi_Board_Content">
                 <h2 class="PandaBangumi_Board_title_cn"><a href="'.$url.'" target="_blank">'.$name_cn.'</a></h2>
                 <h4 class="PandaBangumi_Board_title">'.$name.'</h4>
                 <p class="PandaBangumi_Board_info" style="margin-top:0.2em">
@@ -402,7 +402,6 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
                     <br>总集数：'.$eps_count.'
                 </p>
             </div>
-            <button class="PandaBangumi_Board_showSummary">More</button>
             ';
 
             echo $html;  

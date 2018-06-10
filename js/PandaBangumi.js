@@ -1,5 +1,5 @@
 var PandaBangumi_loading_notice="<div class=\"PandaBangumi-loading\">Loading...<br>ヾ(≧∇≦*)ゝ</div>";
-console.log('%c PandaBangumi 0.99.7 %c https://imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
+console.log('%c PandaBangumi 1.0 %c https://imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
 
 function PandaBangumi_UpdateStatusBar()
 {
@@ -42,32 +42,23 @@ function PandaBangumi_UpdateBoards()
     var tp=Math.floor(($(".PandaBangumi_Board").height()-$(".PandaBangumi_Board_Img_Box").height())/2);
     $(".PandaBangumi_Board_Img_Box").css("left",tp+"px");
     $(".PandaBangumi_Board_Content").css("left",Math.floor(1.8*tp+$(".PandaBangumi_Board_Img_Box").width())+"px");
-    $(".PandaBangumi_Board_title_cn").css("font-size",tp*2+"px");
-    $(".PandaBangumi_Board_title").css("font-size",tp*1.3+"px");
-    $(".PandaBangumi_Board_info").css("line-height",tp*1.6+"px")
-    $(".PandaBangumi_Board_info").css("font-size",tp*1.3+"px");
+    $(".PandaBangumi_Board_title_cn").css("font-size",tp*3.5+"px");
+    $(".PandaBangumi_Board_title").css("font-size",tp*2.3+"px");
+    $(".PandaBangumi_Board_info").css("line-height",tp*2.8+"px")
+    $(".PandaBangumi_Board_info").css("font-size",tp*2.3+"px");
 
-    if (!isMobile) {
-        $(".PandaBangumi_Board_Img_Box").hover(function(){
-            $(this).next().fadeIn(350);
-        })
-        $(".PandaBangumi_Board_Summary").hover(function(){},function(){
-            $(this).fadeOut(350);
-        });
-    }
-    else 
-    {
-        $(".PandaBangumi_Board_showSummary").css("display","block");
-        $(".PandaBangumi_Board_showSummary").click(function(){
-            $(".PandaBangumi_Board_Summary").fadeIn(350);
-        })
-        $(document).click(function(e){ 
-            e = window.event || e; // 兼容IE7
-            obj = $(e.srcElement || e.target);
-            if(obj.attr("class")=="PandaBangumi_Board_Summary")
-            {obj.fadeOut(350);} 
-        });
-    }
+    $(".PandaBangumi_Board_Img_Box").click(function () {
+        $(this).next().fadeIn(250);
+    })
+    $(".PandaBangumi_Board_Summary").click(function () {
+        $(this).fadeOut(250);
+    });
+    $(".PandaBangumi_Board_Summary").hover(function(){},function () {
+        $(this).fadeOut(250);
+    });
+    $(".PandaBangumi_Board_Content").click(function(){
+        $(this).prev().fadeIn(250);
+    })
 }
 
 function PandaBangumi_turnPage(dPage)
