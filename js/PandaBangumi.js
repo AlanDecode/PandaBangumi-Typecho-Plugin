@@ -74,9 +74,6 @@ function PandaBangumi_turnPage(dPage)
             success: function(res) {
                 $('#PandaBangumi-collections-holder').empty().append(res);
                 PandaBangumi_UpdateAll();
-                $("#PandaBangumi-pager-newer").click(function() {PandaBangumi_turnPage(-1)});
-                $("#PandaBangumi-pager-older").click(function() {PandaBangumi_turnPage(1)});
-                $("#PandaBangumi-pager-refresh").click(PandaBangumi_refresh);
             },
             error:function(){
                 $('#PandaBangumi-collections-holder').empty().text('加载失败');
@@ -98,9 +95,6 @@ PandaBangumi_refresh=function()
                 success: function(res) {
                     $('#PandaBangumi-Content').empty().append(res);
                     PandaBangumi_UpdateAll();
-                    $("#PandaBangumi-pager-newer").click(function() {PandaBangumi_turnPage(-1)});
-                    $("#PandaBangumi-pager-older").click(function() {PandaBangumi_turnPage(1)});
-                    $("#PandaBangumi-pager-refresh").click(PandaBangumi_refresh);
                 },
                 error:function(){
                     $('#PandaBangumi-Content').empty().text('加载失败');
@@ -123,9 +117,6 @@ PandaBangumi_initBGM=function()
                 success: function(res) {
                     $('#PandaBangumi-Content').empty().append(res);
                     PandaBangumi_UpdateAll();
-                    $("#PandaBangumi-pager-newer").click(function() {PandaBangumi_turnPage(-1)});
-                    $("#PandaBangumi-pager-older").click(function() {PandaBangumi_turnPage(1)});
-                    $("#PandaBangumi-pager-refresh").click(PandaBangumi_refresh);
                 },
                 error:function(){
                     $('#PandaBangumi-Content').empty().text('加载失败');
