@@ -108,24 +108,9 @@
 
 /*以下是追番列表样式*/
 
-.PandaBangumi-Pager
+#PandaBangumi-Pager
 {
-  line-height:1em;
-  width:auto;
-  font-size: 1em;
-  border-radius: 3px;
-  border:0;
-  box-shadow: 0px 0px  4px 0px #aaa;
-  background-color: #fdf7f6;
-  color:#58666e;
-  padding: 4px;
-  margin-bottom: 15px;
-  margin-top: 15px;
-  margin-right:15px;
-}
-.PandaBangumi-Pager:hover
-{
-  color: black;
+  margin-bottom: 0.6em;
 }
 
 .PandaBangumi-Content
