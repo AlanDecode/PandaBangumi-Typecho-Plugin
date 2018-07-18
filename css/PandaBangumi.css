@@ -147,10 +147,6 @@
     padding:0!important;
     transition: 1s;
 }
-.PandaBangumi-thumb:hover
-{
-  transform: scale(1.05);
-}
 .PandaBangumi-content
 {
     position: absolute;
