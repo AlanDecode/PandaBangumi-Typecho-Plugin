@@ -13,6 +13,7 @@
     overflow: hidden;
 	box-shadow: 0 0 8px rgba(0,0,0,0.2);
 	margin-bottom: 10px;
+	position: relative;
 }
 .PandaBangumi_Board:hover{
     background-color: rgb(250, 251, 252);
@@ -31,7 +32,8 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    overflow: hidden;
+	overflow: hidden;
+	cursor: pointer;
 }
 
 .bgm-board-title{
@@ -95,7 +97,8 @@
     height: 100%;
     transform: translateY(100%);
     transition: all 0.3s;
-    overflow: auto;
+	overflow: auto;
+	cursor: pointer;
 }
 .bgm-board-summary > p{
     margin: 0.8em!important;
