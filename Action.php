@@ -391,18 +391,16 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
             
             if(!$name_cn || $name_cn=='') $name_cn=$name;
 
-            $html ='<div class="bgm-board-item">
-                        <div class="bgm-board-thumb" style="background-image: url('.$img_url.')"></div>
-                        <div class="bgm-board-content">
-                            <a class="bgm-board-title" href="'.$url.'">'.$name_cn.'</a>
-                            <p class="bgm-board-title-jp">'.$name.'</p>
-                            <div class="bgm-board-info">
-                                <p>评分：'.$rating.'</p>
-                                <p>排名：'.$rank.'</p>
-                                <p>首播：'.$air_date.'</p>
-                                <p>播放：周'.$air_weekday.'</p>
-                                <p>集数：'.$eps_count.'</p>
-                            </div>
+            $html ='<div class="bgm-board-thumb" style="background-image: url('.$img_url.')"></div>
+                    <div class="bgm-board-content">
+                        <a class="bgm-board-title" href="'.$url.'">'.$name_cn.'</a>
+                        <p class="bgm-board-title-jp">'.$name.'</p>
+                        <div class="bgm-board-info">
+                            <p>评分：'.$rating.'</p>
+                            <p>排名：'.$rank.'</p>
+                            <p>首播：'.$air_date.'</p>
+                            <p>播放：周'.$air_weekday.'</p>
+                            <p>集数：'.$eps_count.'</p>
                         </div>
                     </div>';
             echo $html;  
