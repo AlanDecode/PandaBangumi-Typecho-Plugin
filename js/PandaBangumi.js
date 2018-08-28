@@ -1,5 +1,5 @@
 var PandaBangumi_loading_notice="<div class=\"PandaBangumi-loading\">Loading...<br>ヾ(≧∇≦*)ゝ</div>";
-console.log('%c PandaBangumi 1.41 %c https://blog.imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
+console.log('%c PandaBangumi 1.42 %c https://blog.imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
 
 function PandaBangumi_UpdateStatusBar()
 {
@@ -31,6 +31,15 @@ function PandaBangumi_UpdateAll()
         }
 
         PandaBangumi_UpdateStatusBar();
+        $(".PandaBangumi-content-des").click(function(){
+            $(this).parent().next().next().css("transform","translateY(0)");
+        });
+        $(".PandaBangumi-thumb").click(function(){
+            $(this).next().next().next().css("transform","translateY(0)");
+        });
+        $(".PandaBangumi-summary").click(function(){
+            $(this).css("transform","translateY(100%)");
+        })
     }
 }
 
@@ -90,15 +99,6 @@ PandaBangumi_initBGM=function()
                 success: function(res) {
                     $('#PandaBangumi-Content').empty().append(res);
                     PandaBangumi_UpdateAll();
-                    $(".PandaBangumi-content-des").click(function(){
-                        $(this).parent().next().next().css("transform","translateY(0)");
-                    });
-                    $(".PandaBangumi-thumb").click(function(){
-                        $(this).next().next().next().css("transform","translateY(0)");
-                    });
-                    $(".PandaBangumi-summary").click(function(){
-                        $(this).css("transform","translateY(100%)");
-                    })
                 },
                 error:function(){
                     $('#PandaBangumi-Content').empty().text('加载失败');
