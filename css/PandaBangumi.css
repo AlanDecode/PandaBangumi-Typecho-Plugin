@@ -41,7 +41,7 @@
     color: #404040;
     overflow: hidden;
     text-overflow:ellipsis;
-    white-space: nowrap;
+    white-space: nowrap!important;
     transition: all 0.1s;
 }
 .bgm-board-title:hover{
@@ -76,6 +76,7 @@
     font-size: 1em;
 	line-height: 1.4em;
 	min-height: 1.4em;
+	overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
 }
