@@ -11,7 +11,8 @@
     justify-content: flex-start;
     border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+	box-shadow: 0 0 8px rgba(0,0,0,0.2);
+	margin-bottom: 10px;
 }
 .bgm-board-thumb{
     flex-shrink: 0;
@@ -190,8 +191,8 @@
 }
 
 .PandaBangumi-loading {
-	margin-top: 20px;
 	margin: 0 auto;
+	margin-top: 30px;
 	font-size: 35px;
 	text-align: center;
 	line-height: 1.4em;
