@@ -1,5 +1,9 @@
 # PandaBangumi-Typecho-Plugin
 
-这是一个可以为 Typecho 博客增加展示番剧功能的插件，介绍及使用见：[熊猫追番 (PandaBangumi) for Typecho 发布！](https://imalan.cn/archives/128/)
+![](https://cdn.imalan.cn/img/site/IMG_1676.JPG)
 
-![](https://cdn.imalan.cn/img/post/photo_2018-05-31_23-44-46.jpg)
+为你的 Typecho 博客增加追番列表显示功能。
+
+演示：**[我的追番 - 熊猫小A的博客](https://blog.imalan.cn/bangumi/)**
+
+介绍：**[熊猫追番 (PandaBangumi) for Typecho 发布！ - 熊猫小A的博客](https://blog.imalan.cn/archives/128/)**
