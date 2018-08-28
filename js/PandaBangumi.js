@@ -1,5 +1,5 @@
 var PandaBangumi_loading_notice="<div class=\"PandaBangumi-loading\">Loading...<br>ヾ(≧∇≦*)ゝ</div>";
-console.log('%c PandaBangumi 1.2 %c https://blog.imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
+console.log('%c PandaBangumi 1.21 %c https://blog.imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
 
 function PandaBangumi_UpdateStatusBar()
 {
@@ -44,9 +44,7 @@ function PandaBangumi_UpdateBoards()
     $(".PandaBangumi_Board_Content").css("left",Math.floor(1.8*tp+$(".PandaBangumi_Board_Img_Box").width())+"px");
     $(".PandaBangumi_Board_title_cn").css("font-size",tp*3.5+"px");
     $(".PandaBangumi_Board_title").css("font-size",tp*2.3+"px");
-    $(".PandaBangumi_Board_info").css("line-height",tp*2.8+"px")
-    $(".PandaBangumi_Board_info").css("font-size",tp*2.3+"px");
-
+    
     $(".PandaBangumi_Board_Img_Box").click(function () {
         $(this).next().fadeIn(250);
     })
@@ -141,6 +139,8 @@ PandaBangumi_initBGM=function()
             }
         });
     });
+    $(".PandaBangumi_Board_info").css("line-height","1.1em");
+    $(".PandaBangumi_Board_info").css("font-size","1em");
 }
 
 $(document).ready(PandaBangumi_initBGM);
