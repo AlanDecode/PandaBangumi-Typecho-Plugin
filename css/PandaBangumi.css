@@ -36,11 +36,9 @@
     font-size: 1.3em;
     min-height: 1.4em;
     line-height: 1.4em;
-    width: min-content;
     max-width: 95%;
     text-decoration: none; 
     color: #404040;
-    border-bottom: 1px solid rgb(33, 186, 155);
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
@@ -50,8 +48,8 @@
     color:rgb(33, 186, 155)!important;
 }
 .bgm-board-title-jp{
-    margin:0;
-    margin-right:5px;
+    margin:0!important;
+    margin-right:5px!important;
     font-size: 1.2em;
     min-height: 1.3em;
     line-height: 1.3em;
@@ -71,14 +69,13 @@
     justify-content: flex-start;
     overflow-y: auto;
     overflow-x: hidden;
-    width: min-content;
     max-width: 95%;   
 }
 .bgm-board-info p{
-    margin: 0;
+    margin: 0!important;
     font-size: 1em;
-    line-height: 1.4em;
-    overflow-x: hidden;
+	line-height: 1.4em;
+	min-height: 1.4em;
     text-overflow:ellipsis;
     white-space: nowrap;
 }
