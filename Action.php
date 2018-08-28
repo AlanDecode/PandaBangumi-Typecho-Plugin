@@ -350,9 +350,8 @@ function PrintCollection($email, $password, $filePath, $page, $perpage, $with_ho
                 <p  title="点击显示简介" class="PandaBangumi-content-des">进度：'.$ep_status.' / '.$ep_count.'</p>
             </div>
             <div class="PandaBangumi-status-bar" data1="'.$ep_status.'" data2="'.$ep_count.'"></div>
-            <div class="PandaBangumi-summary" title="点击隐藏简介"><p>'.$summary.'</p></div>';
-        </div>
-        ';
+            <div class="PandaBangumi-summary" title="点击隐藏简介"><p>'.$summary.'</p></div>
+        </div>';
 
         $result.=$html;
     }
