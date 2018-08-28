@@ -108,7 +108,7 @@ PandaBangumi_initBGM=function()
             success:function(res){
                 obj.empty().append(res);
                 $(".bgm-board-info").click(function(){
-                    $(this).next().css("transform","translateY(0)");
+                    $(this).parent().next().css("transform","translateY(0)");
                 });
                 $(".bgm-board-summary").click(function(){
                     $(this).css("transform","translateY(100%)");
