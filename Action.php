@@ -131,7 +131,8 @@ class BangumiAPI
                 "air_date"=>$value->subject->air_date,
                 "air_weekday"=>$value->subject->air_weekday,
                 "url"=>$value->subject->url,
-                "img_url"=>str_replace("http://", "https://", $value->subject->images->common)
+                "img_url"=>str_replace("http://", "https://", $value->subject->images->common),
+                "summary"=>json_decode(BangumiAPI::curl_get_contents('https://api.bgm.tv/subject/'.(string)$value->subject->id))->summary
             );
 
             array_push($collections,$item);
@@ -334,20 +335,22 @@ function PrintCollection($email, $password, $filePath, $page, $perpage, $with_ho
         $ep_status=$item->ep_status;
         $url=$item->url;
         $img_url=$item->img_url;
+        $summary=$item->summary;
 
 		if(!$name_cn || $name_cn=='') $name_cn=$name;
 		
         $html='
         <div class="PandaBangumi-item">
-            <img class="PandaBangumi-thumb" src="'.$img_url.'"/>
+            <img title="点击显示简介" class="PandaBangumi-thumb" src="'.$img_url.'"/>
             <div class="PandaBangumi-content">
 				<a href="'.$url.'" class="PandaBangumi-content-title" target="_blank">'.$name_cn.'<span style="font-size: 15px;margin-left: 0.3em"><i class="fa fa-external-link"></i></span></a>
                 <p class="PandaBangumi-content-title-jp">'.$name.'</p>
-                <p class="PandaBangumi-content-des">首播：'.$air_date.'</p>
-                <p class="PandaBangumi-content-des">播出：周'.$air_weekday.'</p>
-                <p class="PandaBangumi-content-des">进度：'.$ep_status.' / '.$ep_count.'</p>
+                <p  title="点击显示简介" class="PandaBangumi-content-des">首播：'.$air_date.'</p>
+                <p  title="点击显示简介" class="PandaBangumi-content-des">播出：周'.$air_weekday.'</p>
+                <p  title="点击显示简介" class="PandaBangumi-content-des">进度：'.$ep_status.' / '.$ep_count.'</p>
             </div>
             <div class="PandaBangumi-status-bar" data1="'.$ep_status.'" data2="'.$ep_count.'"></div>
+            <div class="PandaBangumi-summary" title="点击隐藏简介"><p>'.$summary.'</p></div>';
         </div>
         ';
 

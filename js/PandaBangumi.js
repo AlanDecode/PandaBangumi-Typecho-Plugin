@@ -90,6 +90,15 @@ PandaBangumi_initBGM=function()
                 success: function(res) {
                     $('#PandaBangumi-Content').empty().append(res);
                     PandaBangumi_UpdateAll();
+                    $(".PandaBangumi-content-des").click(function(){
+                        $(this).parent().next().next().css("transform","translateY(0)");
+                    });
+                    $(".PandaBangumi-thumb").click(function(){
+                        $(this).next().next().next().css("transform","translateY(0)");
+                    });
+                    $(".PandaBangumi-summary").click(function(){
+                        $(this).css("transform","translateY(100%)");
+                    })
                 },
                 error:function(){
                     $('#PandaBangumi-Content').empty().text('加载失败');

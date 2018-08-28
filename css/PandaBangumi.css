@@ -137,6 +137,7 @@
 	padding: 0!important;
 	transition: 1s;
 	object-fit: cover;
+	cursor: pointer;
 }
 
 .PandaBangumi-content {
@@ -195,6 +196,24 @@
 	margin: 4px!important;
 	margin-top: 4px!important;
 	color: #58666e!important;
+	cursor: pointer;
+}
+.PandaBangumi-summary{
+    position: absolute;
+    top:0;
+    left: 0;
+    margin: 0;
+    background-color: white;
+    word-wrap: normal;
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%);
+    transition: all 0.3s;
+	overflow: auto;
+	cursor: pointer;
+}
+.PandaBangumi-summary > p{
+    margin: 0.8em!important;
 }
 
 #PandaBangumi-collections-holder {
