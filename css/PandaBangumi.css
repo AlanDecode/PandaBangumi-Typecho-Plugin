@@ -1,6 +1,6 @@
 /*单个插入的番剧*/
 .PandaBangumi_Board{
-    height: 160px;
+    height: 180px;
     width: 100%;
     min-width: 300px;
     max-width: 450px;
@@ -15,7 +15,7 @@
 }
 .bgm-board-thumb{
     flex-shrink: 0;
-    width: 160px;
+    width: 150px;
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -190,7 +190,7 @@
 }
 
 .PandaBangumi-loading {
-	margin: 10%;
+	margin: 0 auto;
 	font-size: 35px;
 	text-align: center;
 	line-height: 1.4em;
