@@ -103,8 +103,10 @@
   overflow: auto;
   z-index:9;
 }
-
-
+.PandaBangumi_Board_info{
+  line-height:1.1em;
+  font-size:1em;
+}
 
 /*以下是追番列表样式*/
 
