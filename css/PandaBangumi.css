@@ -124,6 +124,7 @@
 	margin-bottom: 20px;
 	float: left;
 	background-color: rgb(247,248,250);
+	box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
 
 .PandaBangumi-thumb {
