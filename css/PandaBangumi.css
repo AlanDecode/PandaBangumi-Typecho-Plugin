@@ -108,152 +108,146 @@
 
 /*以下是追番列表样式*/
 
-#PandaBangumi-Pager
-{
-  margin-bottom: 0.6em;
+#PandaBangumi-Pager {
+	margin-bottom: 0.6em;
 }
 
-.PandaBangumi-Content
-{
-    display: inline-block;
-    width:100%;
+.PandaBangumi-Content {
+	display: inline-block;
+	width: 100%;
 }
-.PandaBangumi-item
-{
-    position: relative;
-    height: 128px;
-    border-radius:3px;
-    box-shadow: 0px 0px  4px 0px #aaa;
-    overflow: hidden;
-    margin-right: 10px;
-    margin-bottom: 20px;
-    float:left;
-    background-color: #fdf7f6;
+
+.PandaBangumi-item {
+	position: relative;
+	height: 128px;
+	overflow: hidden;
+	margin-right: 10px;
+	margin-bottom: 20px;
+	float: left;
+	background-color: rgb(247,248,250);
 }
-.PandaBangumi-item:hover
-{
-    background-color: #eae9e8;
+
+.PandaBangumi-thumb {
+	position: absolute;
+	width: 128px;
+	height: 100%;
+	left: 0;
+	top: 0;
+	box-shadow: 0px 0px  4px 0px #aaa;
+	margin: 0!important;
+	padding: 0!important;
+	transition: 1s;
+	object-fit: cover;
 }
-.PandaBangumi-thumb
-{
-    position: absolute;   
-    width: 128px;
-    left:0;
-    top:0;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    box-shadow: 0px 0px  4px 0px #aaa;
-    margin:0!important;
-    padding:0!important;
-    transition: 1s;
+
+.PandaBangumi-content {
+	position: absolute;
+	width: auto;
+	height: 110px;
+	right: 2px;
+	left: 135px;
+	top: 5px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
-.PandaBangumi-content
-{
-    position: absolute;
-    width: auto;
-    height: 110px;
-    right:2px;
-    left:130px;
-    top:5px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+
+.PandaBangumi-status-bar {
+	position: absolute;
+	height: 12px;
+	left: 135px;
+	bottom: 5px;
+	border-radius: 3px;
+	background-color: lightpink;
 }
-.PandaBangumi-status-bar
-{
-    position: absolute;
-    height: 12px;
-    left: 130px;
-    bottom:5px;
-    border-radius: 3px;
-    background-color: #f3ab9a;
+
+.PandaBangumi-content .PandaBangumi-content-title {
+	font-size: 20px;
+	line-height: 20px;
+	top: 0;
+	margin: 2px;
+	margin-top: 4px;
+	font-weight: bolder;
+	overflow: hidden!important;
+	text-overflow: ellipsis!important;
+	white-space: nowrap!important;
+	color: #58666e!important;
 }
-.PandaBangumi-content .PandaBangumi-content-title
-{
-    font-size: 20px;
-    line-height: 20px;
-    top:0;
-    margin:2px;
-    margin-top:4px;
-    font-weight: bolder;
-    overflow: hidden!important;
-    text-overflow:ellipsis!important;
-    white-space:nowrap!important;
-    color: #58666e!important;
+
+.PandaBangumi-content .PandaBangumi-content-title:hover {
+	color: #404040!important;
 }
-.PandaBangumi-content .PandaBangumi-content-title:hover
-{
-  color: #404040!important;
+
+.PandaBangumi-content .PandaBangumi-content-title-jp {
+	font-size: 16px;
+	line-height: 16px;
+	margin: 1px!important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #404040!important;
 }
-.PandaBangumi-content .PandaBangumi-content-title-jp
-{
-    font-size: 16px;
-    line-height: 16px;
-    margin: 1px!important;
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    color: #404040!important;
+
+.PandaBangumi-content-des {
+	font-size: 13px!important;
+	line-height: 14px!important;
+	margin: 4px!important;
+	margin-top: 4px!important;
+	color: #58666e!important;
 }
-.PandaBangumi-content-des
-{
-    font-size:13px!important;
-    line-height: 14px!important;
-    margin:4px!important;
-    margin-top:4px!important;
-    color: #58666e!important;
+
+#PandaBangumi-collections-holder {
+	display: inline-block;
+	width: 100%;
 }
-#PandaBangumi-collections-holder
-{
-    display: inline-block;
-    width:100%;
+
+#PandaBangumi-collections {
+	display: inline-block;
+	width: 100%;
 }
-#PandaBangumi-collections
-{
-    display: inline-block;
-    width:100%;
+
+#PandaBangumi-calendar {
+	margin-top: 10px;
+	display: block;
+	float: top;
 }
-#PandaBangumi-calendar
-{
-    margin-top:10px;
-    display: block;
-    float:top;
+
+.PandaBangumi-loading {
+	margin: 10%;
+	font-size: 35px;
+	text-align: center;
+	line-height: 1.4em;
+	font-family: bgmSigmarOne;
+	animation: shake-shake .01s reverse infinite cubic-bezier(0.68,-0.55,0.27,1.55);
+	color: #d5527d!important;
 }
-.PandaBangumi-loading
-{
-  margin:10%;
-  font-size: 35px;
-  text-align: center;
-  line-height: 1.4em;
-  font-family: bgmSigmarOne;
-  animation: shake-shake .01s reverse infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  color:#d5527d!important;
+
+@font-face {
+	font-family:bgmSigmarOne;src:url('/usr/plugins/PandaBangumi/font/bgmSigmarOne.woff.ttf');font-weight:strong;
 }
-@font-face
-{
-    font-family: bgmSigmarOne;
-    src:url('/usr/plugins/PandaBangumi/font/bgmSigmarOne.woff.ttf');
-    font-weight: strong;
-}
-@keyframes shake-shake{
-  0%{
-    text-shadow: 0 0 rgba(0, 255, 255, .5), 0 0 rgba(255, 0, 0, .5);
-    transform:rotate(0.7deg);
-  }
-  25%{
-      text-shadow: -1px 0 rgba(0, 255, 255, .5), 1px 0 rgba(255, 0, 0, .5);
-      transform:rotate(-0.7deg);
-  }
-  50%{
-      text-shadow: -3px 0 rgba(0, 255, 255, .5), 2px 0 rgba(255, 0, 0, .5);
-      transform:rotate(0.7deg);
-      transform: translateX(1px);
-  }
-  100%{
-      text-shadow: 2px 0 rgba(0, 255, 255, .5), 3px 0 rgba(255, 0, 0, .5);
-      transform:rotate(-0.7deg);
-      transform: translateX(-1px);
-  }
+
+@keyframes shake-shake {
+	0% {
+		text-shadow: 0 0 rgba(0,255,255,.5),0 0 rgba(255,0,0,.5);
+		transform: rotate(0.7deg);
+	}
+
+	25% {
+		text-shadow: -1px 0 rgba(0,255,255,.5),1px 0 rgba(255,0,0,.5);
+		transform: rotate(-0.7deg);
+	}
+
+	50% {
+		text-shadow: -3px 0 rgba(0,255,255,.5),2px 0 rgba(255,0,0,.5);
+		transform: rotate(0.7deg);
+		transform: translateX(1px);
+	}
+
+	100% {
+		text-shadow: 2px 0 rgba(0,255,255,.5),3px 0 rgba(255,0,0,.5);
+		transform: rotate(-0.7deg);
+		transform: translateX(-1px);
+	}
 }

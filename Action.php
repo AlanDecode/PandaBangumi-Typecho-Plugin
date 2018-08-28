@@ -335,11 +335,13 @@ function PrintCollection($email, $password, $filePath, $page, $perpage, $with_ho
         $url=$item->url;
         $img_url=$item->img_url;
 
+		if(!$name_cn || $name_cn=='') $name_cn=$name;
+		
         $html='
-        <div class="PandaBangumi-item" onclick="window.open(\''.$url.'\')">
+        <div class="PandaBangumi-item">
             <img class="PandaBangumi-thumb" src="'.$img_url.'"/>
             <div class="PandaBangumi-content">
-                <a href="'.$url.'" class="PandaBangumi-content-title" target="_blank">'.$name_cn.'</a>
+				<a href="'.$url.'" class="PandaBangumi-content-title" target="_blank">'.$name_cn.'</a>
                 <p class="PandaBangumi-content-title-jp">'.$name.'</p>
                 <p class="PandaBangumi-content-des">首播：'.$air_date.'</p>
                 <p class="PandaBangumi-content-des">播出：周'.$air_weekday.'</p>
