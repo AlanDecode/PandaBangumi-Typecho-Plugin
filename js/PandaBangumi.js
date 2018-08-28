@@ -34,31 +34,6 @@ function PandaBangumi_UpdateAll()
     }
 }
 
-function PandaBangumi_UpdateBoards()
-{
-    var h=Math.min(230,Math.floor($(".PandaBangumi_Board").width()*0.47));
-    $(".PandaBangumi_Board").css("height",h+"px");
-    $(".PandaBangumi_Board_Img_Box").css("width",$(".PandaBangumi_Board_Img_Box").height()+"px");
-    var tp=Math.floor(($(".PandaBangumi_Board").height()-$(".PandaBangumi_Board_Img_Box").height())/2);
-    $(".PandaBangumi_Board_Img_Box").css("left",tp+"px");
-    $(".PandaBangumi_Board_Content").css("left",Math.floor(1.8*tp+$(".PandaBangumi_Board_Img_Box").width())+"px");
-    $(".PandaBangumi_Board_title_cn").css("font-size",tp*3.5+"px");
-    $(".PandaBangumi_Board_title").css("font-size",tp*2.3+"px");
-    
-    $(".PandaBangumi_Board_Img_Box").click(function () {
-        $(this).next().fadeIn(250);
-    })
-    $(".PandaBangumi_Board_Summary").click(function () {
-        $(this).fadeOut(250);
-    });
-    $(".PandaBangumi_Board_Summary").hover(function(){},function () {
-        $(this).fadeOut(250);
-    });
-    $(".PandaBangumi_Board_Content").click(function(){
-        $(this).prev().fadeIn(250);
-    })
-}
-
 function PandaBangumi_turnPage(dPage)
 {
     var newPage=parseInt(document.getElementById("PandaBangumi-collections").getAttribute("pagenum"))+dPage;
@@ -132,17 +107,13 @@ PandaBangumi_initBGM=function()
             url:'/index.php/PandaBangumi?getboard=1&id='+$(this).attr("data"),
             success:function(res){
                 obj.empty().append(res);
-                PandaBangumi_UpdateBoards();
             },
             error:function(){
                 obj.empty().append('加载失败，真是悲伤……');
             }
         });
     });
-    $(".PandaBangumi_Board_info").css("line-height","1.1em");
-    $(".PandaBangumi_Board_info").css("font-size","1em");
 }
 
 $(document).ready(PandaBangumi_initBGM);
 $(window).resize(PandaBangumi_UpdateAll);
-$(window).resize(PandaBangumi_UpdateBoards);
