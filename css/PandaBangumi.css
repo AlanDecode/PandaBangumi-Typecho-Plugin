@@ -14,6 +14,9 @@
 	box-shadow: 0 0 8px rgba(0,0,0,0.2);
 	margin-bottom: 10px;
 }
+.PandaBangumi_Board:hover{
+    background-color: rgb(250, 251, 252);
+}
 .bgm-board-thumb{
     flex-shrink: 0;
     width: 150px;
@@ -80,6 +83,22 @@
 	overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
+}
+.bgm-board-summary{
+    position: absolute;
+    top:0;
+    left: 0;
+    margin: 0;
+    background-color: white;
+    word-wrap: normal;
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%);
+    transition: all 0.3s;
+    overflow: auto;
+}
+.bgm-board-summary > p{
+    margin: 0.8em!important;
 }
 
 /*以下是追番列表样式*/
