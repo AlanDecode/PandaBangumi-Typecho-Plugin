@@ -392,10 +392,10 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
             if(!$name_cn || $name_cn=='') $name_cn=$name;
 
             $html ='<div class="bgm-board-thumb" style="background-image: url('.$img_url.')"></div>
-                    <div class="bgm-board-content" title="点击显示简介">
-                        <a class="bgm-board-title" href="'.$url.'">'.$name_cn.'</a>
+                    <div class="bgm-board-content">
+                        <a class="bgm-board-title" href="'.$url.'" target="_blank">'.$name_cn.'<span style="margin-left: 0.3em"><i class="fa fa-external-link"></i></span></a>
                         <p class="bgm-board-title-jp">'.$name.'</p>
-                        <div class="bgm-board-info">
+                        <div class="bgm-board-info" title="点击显示简介">
                             <p>评分：'.$rating.'</p>
                             <p>排名：'.$rank.'</p>
                             <p>首播：'.$air_date.'</p>

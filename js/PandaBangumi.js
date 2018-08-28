@@ -1,5 +1,5 @@
 var PandaBangumi_loading_notice="<div class=\"PandaBangumi-loading\">Loading...<br>ヾ(≧∇≦*)ゝ</div>";
-console.log('%c PandaBangumi 1.31 %c https://blog.imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
+console.log('%c PandaBangumi 1.32 %c https://blog.imalan.cn/archives/128/ ', 'color: #fadfa3; background: #23b7e5; padding:5px 0;', 'background: #1c2b36; padding:5px 0;');
 
 function PandaBangumi_UpdateStatusBar()
 {
@@ -107,7 +107,7 @@ PandaBangumi_initBGM=function()
             url:'/index.php/PandaBangumi?getboard=1&id='+$(this).attr("data"),
             success:function(res){
                 obj.empty().append(res);
-                $(".bgm-board-content").click(function(){
+                $(".bgm-board-info").click(function(){
                     $(this).next().css("transform","translateY(0)");
                 });
                 $(".bgm-board-summary").click(function(){

@@ -33,7 +33,6 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
 	overflow: hidden;
-	cursor: pointer;
 }
 
 .bgm-board-title{
@@ -75,7 +74,8 @@
     justify-content: flex-start;
     overflow-y: auto;
     overflow-x: hidden;
-    max-width: 95%;   
+	max-width: 95%;   
+	cursor: pointer;
 }
 .bgm-board-info p{
     margin: 0!important;
