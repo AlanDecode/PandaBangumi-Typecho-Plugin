@@ -341,7 +341,7 @@ function PrintCollection($email, $password, $filePath, $page, $perpage, $with_ho
         <div class="PandaBangumi-item">
             <img class="PandaBangumi-thumb" src="'.$img_url.'"/>
             <div class="PandaBangumi-content">
-				<a href="'.$url.'" class="PandaBangumi-content-title" target="_blank">'.$name_cn.'</a>
+				<a href="'.$url.'" class="PandaBangumi-content-title" target="_blank">'.$name_cn.'<span style="font-size: 15px;margin-left: 0.3em"><i class="fa fa-external-link"></i></span></a>
                 <p class="PandaBangumi-content-title-jp">'.$name.'</p>
                 <p class="PandaBangumi-content-des">首播：'.$air_date.'</p>
                 <p class="PandaBangumi-content-des">播出：周'.$air_weekday.'</p>
