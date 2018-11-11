@@ -88,7 +88,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
      */
     public static function header()
     {
-        echo '<link rel="stylesheet" href="/usr/plugins/PandaBangumi/css/PandaBangumi.2.1.css?v='.PandaBangumi_Plugin_VERSION.'" />';
+        echo '<link rel="stylesheet" href="/usr/plugins/PandaBangumi/css/PandaBangumi.2.2.css?v='.PandaBangumi_Plugin_VERSION.'" />';
         if (!empty(Helper::options()->plugin('PandaBangumi')->bgmst) && in_array('jq', Helper::options()->plugin('PandaBangumi')->bgmst))
         {
             echo '<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>';

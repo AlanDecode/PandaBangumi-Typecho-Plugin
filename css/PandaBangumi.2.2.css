@@ -27,15 +27,9 @@
     }
 }
 
-@media screen and (min-width:1024px){
-    .bgm-item{
-        width: calc(25% - 20px)
-    }
-}
-
 .bgm-item-thumb{
     width: 100%;
-    padding-top: 141%;
+    padding-top: 120%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
