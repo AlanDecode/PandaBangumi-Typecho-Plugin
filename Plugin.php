@@ -8,7 +8,7 @@
  * @package PandaBangumi
  * @author 熊猫小A
  * @version 2.0
- * @link https://imalan.cn
+ * @link https://www.imalan.cn
  */
 
 define('PandaBangumi_Plugin_VERSION', '2.0');
@@ -50,7 +50,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
      * @return void
      */
     public static function config(Typecho_Widget_Helper_Form $form){
-        echo '作者：<a href="http://imalan.cn">熊猫小A</a>，插件介绍页：<a href="https://blog.imalan.cn/archives/128/">熊猫追番 (PandaBangumi) for Typecho</a><br>';
+        echo '作者：<a href="https://www.imalan.cn">熊猫小A</a>，插件介绍页：<a href="https://blog.imalan.cn/archives/128/">熊猫追番 (PandaBangumi) for Typecho</a><br>';
         echo '<br><strong>使用方法：</strong><br>';
         echo '<br>在文章要插入的地方写: ';
         echo htmlspecialchars('<div class="bgm-collection" id="bgm-collection"></div>');
@@ -88,10 +88,10 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
      */
     public static function header()
     {
-        echo '<link rel="stylesheet" href="/usr/plugins/PandaBangumi/css/PandaBangumi.2.2.css?v='.PandaBangumi_Plugin_VERSION.'" />';
+        echo '<link rel="stylesheet" href="/usr/plugins/PandaBangumi/css/PandaBangumi.20.css?v='.PandaBangumi_Plugin_VERSION.'" />';
         if (!empty(Helper::options()->plugin('PandaBangumi')->bgmst) && in_array('jq', Helper::options()->plugin('PandaBangumi')->bgmst))
         {
-            echo '<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>';
+            echo '<script src="/usr/plugins/PandaBangumi/js/jq.min.js"></script>';
         }
     }  
 
@@ -104,7 +104,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
      */
     public static function footer()
     {
-        echo '<script type="text/javascript" src="/usr/plugins/PandaBangumi/js/PandaBangumi.2.0.js?v='.PandaBangumi_Plugin_VERSION.'"></script>';
+        echo '<script type="text/javascript" src="/usr/plugins/PandaBangumi/js/PandaBangumi.20.js?v='.PandaBangumi_Plugin_VERSION.'"></script>';
     }
 }
 

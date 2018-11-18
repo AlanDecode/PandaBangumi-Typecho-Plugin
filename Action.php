@@ -55,7 +55,7 @@ class BangumiAPI{
                 'count'=>$item->subject->eps_count,
                 'air_date'=>$item->subject->air_date,
                 'air_weekday'=>$weekdays[$item->subject->air_weekday-1],
-                'img'=>$item->subject->images->large,
+                'img'=>str_replace('http://','https://',$item->subject->images->large),
                 'id'=>$item->subject->id
             );
             array_push($collections,$collect);

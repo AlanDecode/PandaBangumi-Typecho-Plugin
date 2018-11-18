@@ -14,6 +14,7 @@
     transition: 0.3s ease box-shadow;
     border: none!important;
     text-decoration: none!important;
+    background: #fff;
 }
 .bgm-item:hover{
     box-shadow: 0 6px 12px rgba(0,0,0,0.2);
@@ -55,9 +56,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 0.9rem;
+    color: #333
 }
 .bgm-item-title:not(.main){
-    color: rgba(0,0,0,0.2);
+    color: #5e5b5c;
 }
 .bgm-item-title.main{
     font-size: 1.2rem;
@@ -69,6 +71,7 @@
     width: 100%;
     position: relative;
     z-index: 0;
+    color: #333;
 }
 .bgm-item-statusBar{
     position: absolute;
@@ -96,12 +99,13 @@
     align-items: center;
 }
 .loader:hover{
-    border: 3px solid black;
+    border: 3px solid lightpink;
+    color: lightpink;
 }
 .dot {
 	width:8px;
 	height:8px;
-	background:#3ac;
+	background:lightpink;
 	border-radius:100%;
 	display:inline-block;
 	-webkit-animation:slide 1s infinite;
@@ -111,17 +115,14 @@
 .dot:nth-child(1) {
 	-webkit-animation-delay:.1s;
 	animation-delay:.1s;
-	background:#333
 }
 .dot:nth-child(2) {
 	-webkit-animation-delay:.2s;
 	animation-delay:.2s;
-	background:#222
 }
 .dot:nth-child(3) {
 	-webkit-animation-delay:.3s;
 	animation-delay:.3s;
-	background:black
 }
 
 @-webkit-keyframes slide {
