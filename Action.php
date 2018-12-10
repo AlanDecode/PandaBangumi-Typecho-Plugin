@@ -131,10 +131,10 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
     
     public function action(){
         header("Content-type: application/json");
-        if($_GET['single']==1){
-            echo json_encode(array());
-            return;
-        }
+        // if($_GET['single']==1){
+        //     echo json_encode(array());
+        //     return;
+        // }
         $options = Helper::options();
 		$ID = $options->plugin('PandaBangumi')->ID;
         $PageSize = $options->plugin('PandaBangumi')->PageSize;
