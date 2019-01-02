@@ -14,6 +14,26 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 <?php 
 
 class BangumiAPI{
+
+    /**
+     * 使用 curl 代替 self::curlFileGetContents()
+     * 
+     * @access public
+     */
+    static public function curlFileGetContents($url){
+        $myCurl = curl_init($_url);
+        //不验证证书
+        curl_setopt($myCurl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($myCurl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($myCurl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($myCurl,  CURLOPT_HEADER, false);
+        //获取
+        $content = curl_exec($myCurl);
+        //关闭
+        curl_close($myCurl);
+        return $content;
+    }
+
     
     /**
      * 收藏（在看） API，调用方式：$collectApiUrl/user/【ID】/collection?cat=playing&
@@ -38,7 +58,7 @@ class BangumiAPI{
      */
     static private function __getCollectionRawData($ID){
         $apiUrl=self::$collectApiUrl.'/user/'.$ID.'/collection?cat=playing';
-        $data=file_get_contents($apiUrl);
+        $data=self::curlFileGetContents($apiUrl);
         if($data=='null') return '-1'; // 此用户尚未标记再看番剧
 
         $data=json_decode($data);
@@ -70,7 +90,7 @@ class BangumiAPI{
      */
     static public function getCalendar(){
         // 暂去掉追番日历功能
-        $data=json_decode(file_get_contents(self::$calendarApiUrl));
+        $data=json_decode(self::curlFileGetContents(self::$calendarApiUrl));
     }
 
     /**
@@ -106,7 +126,7 @@ class BangumiAPI{
             fclose($file);
             return self::updateCacheAndReturn($ID,$PageSize,$From,$ValidTimeSpan);
         }else{
-            $data=json_decode(file_get_contents(__DIR__.'/json/bangumi.json'))->data;
+            $data=json_decode(self::curlFileGetContents(__DIR__.'/json/bangumi.json'))->data;
             $total=count($data);
             if($From<0 || $From>$total-1) echo json_encode(array());
             else{
