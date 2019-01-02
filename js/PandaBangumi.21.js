@@ -4,7 +4,7 @@ var bgmCur;
 
 function loadMoreBgm(){
     $('.loader').html('<div class="dot"></div><div class="dot"></div><div class="dot"></div>');
-    $.getJSON('/PandaBangumi?from='+String(bgmCur),function(data){
+    $.getJSON(bgmBase+'?from='+String(bgmCur),function(data){
         $('.loader').html('加载更多');
         if(data.length<1) $('.loader').html('没有了');
         $.each(data,function(i,item){

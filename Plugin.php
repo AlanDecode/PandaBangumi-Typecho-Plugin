@@ -97,6 +97,9 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
             Helper::options()->index('/usr/plugins/PandaBangumi/js/jq.min.js');
             echo '"></script>';
         }
+        echo '<script>var bgmBase="';
+        Helper::options()->index('/PandaBangumi');
+        echo '"</script>';
     }  
 
     /**
@@ -109,7 +112,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
     public static function footer()
     {
         echo '<script type="text/javascript" src="';
-        Helper::options()->index('/usr/plugins/PandaBangumi/js/PandaBangumi.20.js');
+        Helper::options()->index('/usr/plugins/PandaBangumi/js/PandaBangumi.21.js');
         echo '?v='.PandaBangumi_Plugin_VERSION.'"></script>';
     }
 }
