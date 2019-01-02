@@ -16,11 +16,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 class BangumiAPI{
 
     /**
-     * 使用 curl 代替 self::curlFileGetContents()
+     * 使用 curl 代替 file_get_contents()
      * 
      * @access public
      */
-    static public function curlFileGetContents($url){
+    static public function curlFileGetContents($_url){
         $myCurl = curl_init($_url);
         //不验证证书
         curl_setopt($myCurl, CURLOPT_SSL_VERIFYPEER, false);
@@ -126,7 +126,7 @@ class BangumiAPI{
             fclose($file);
             return self::updateCacheAndReturn($ID,$PageSize,$From,$ValidTimeSpan);
         }else{
-            $data=json_decode(self::curlFileGetContents(__DIR__.'/json/bangumi.json'))->data;
+            $data=json_decode(file_get_contents(__DIR__.'/json/bangumi.json'))->data;
             $total=count($data);
             if($From<0 || $From>$total-1) echo json_encode(array());
             else{
@@ -151,10 +151,6 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
     
     public function action(){
         header("Content-type: application/json");
-        // if($_GET['single']==1){
-        //     echo json_encode(array());
-        //     return;
-        // }
         $options = Helper::options();
 		$ID = $options->plugin('PandaBangumi')->ID;
         $PageSize = $options->plugin('PandaBangumi')->PageSize;
