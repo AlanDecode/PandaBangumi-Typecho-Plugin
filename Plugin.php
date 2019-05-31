@@ -87,12 +87,12 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
     public static function header()
     {
         echo '<link rel="stylesheet" href="';
-        Helper::options()->index('/usr/plugins/PandaBangumi/css/PandaBangumi.20.css');
+        Helper::options()->pluginUrl('/PandaBangumi/css/PandaBangumi.20.css');
         echo '?v='.PandaBangumi_Plugin_VERSION.'" />';
         if (!empty(Helper::options()->plugin('PandaBangumi')->bgmst) && in_array('jq', Helper::options()->plugin('PandaBangumi')->bgmst))
         {
             echo '<script src="';
-            Helper::options()->index('/usr/plugins/PandaBangumi/js/jq.min.js');
+            Helper::options()->pluginUrl('/PandaBangumi/js/jq.min.js');
             echo '"></script>';
         }
         echo '<script>var bgmBase="';
@@ -110,7 +110,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
     public static function footer()
     {
         echo '<script type="text/javascript" src="';
-        Helper::options()->index('/usr/plugins/PandaBangumi/js/PandaBangumi.21.js');
+        Helper::options()->pluginUrl('/PandaBangumi/js/PandaBangumi.21.js');
         echo '?v='.PandaBangumi_Plugin_VERSION.'"></script>';
     }
 }
