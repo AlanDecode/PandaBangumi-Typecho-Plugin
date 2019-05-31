@@ -1,6 +1,4 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit;?>
-
-<?php
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 /**
  * 给博客添加精美的番剧展示页吧！
  *  
@@ -116,5 +114,3 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
         echo '?v='.PandaBangumi_Plugin_VERSION.'"></script>';
     }
 }
-
-?>
