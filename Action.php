@@ -6,12 +6,7 @@
  * 
  * @author 熊猫小A
  */
-
-
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-?>
-
-<?php 
 
 class BangumiAPI{
 
@@ -61,7 +56,7 @@ class BangumiAPI{
         $data=self::curlFileGetContents($apiUrl);
         if($data=='null') return '-1'; // 此用户尚未标记再看番剧
 
-        $data=json_decode($data);
+        $data=json_decode($data, false);
 
         $weekdays=array('Mon.','Tue.','Wed.','Thu','Fri','Sat','Sun');
 
@@ -90,7 +85,7 @@ class BangumiAPI{
      */
     static public function getCalendar(){
         // 暂去掉追番日历功能
-        $data=json_decode(self::curlFileGetContents(self::$calendarApiUrl));
+        $data=json_decode(self::curlFileGetContents(self::$calendarApiUrl), false);
     }
 
     /**
@@ -104,7 +99,7 @@ class BangumiAPI{
     private static function __isCacheExpired($FilePath,$ValidTimeSpan){
         $file=fopen($FilePath,"r");
         if(!$file) return -1;
-        $content=json_decode(fread($file,filesize($FilePath)));
+        $content=json_decode(fread($file,filesize($FilePath)), false);
         fclose($file);
         if(!$content->time || $content->time<1) return -1;
         if(time()-$content->time > $ValidTimeSpan) return 1;
@@ -126,7 +121,7 @@ class BangumiAPI{
             fclose($file);
             return self::updateCacheAndReturn($ID,$PageSize,$From,$ValidTimeSpan);
         }else{
-            $data=json_decode(file_get_contents(__DIR__.'/json/bangumi.json'))->data;
+            $data=json_decode(file_get_contents(__DIR__.'/json/bangumi.json'), false)->data;
             $total=count($data);
             if($From<0 || $From>$total-1) echo json_encode(array());
             else{
@@ -143,12 +138,10 @@ class BangumiAPI{
 
 class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Interface_Do 
 {
-    
     /**
      * 返回请求的 HTML
      * @access public
      */
-    
     public function action(){
         header("Content-type: application/json");
         $options = Helper::options();
@@ -158,10 +151,5 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
         $From=$_GET['from'];
         if($PageSize==-1) $PageSize=1000000;
         echo BangumiAPI::updateCacheAndReturn($ID,$PageSize,$From,$ValidTimeSpan);
-        return;
     }
-
 }
-
-
-?>
