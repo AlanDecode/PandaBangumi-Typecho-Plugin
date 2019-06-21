@@ -59,7 +59,6 @@ class BangumiAPI{
         $data=json_decode($data, false);
 
         $weekdays=array('Mon.','Tue.','Wed.','Thu','Fri','Sat','Sun');
-
         $collections=array();
         foreach ($data as $item) {
             $collect=array(
@@ -113,8 +112,8 @@ class BangumiAPI{
      * @return string
      */
     static public function updateCacheAndReturn($ID,$PageSize,$From,$ValidTimeSpan){
-        $expired=self::__isCacheExpired(__DIR__.'/json/bangumi.json',$ValidTimeSpan);
-        if($expired!=0){
+        $expired=self::__isCacheExpired(__DIR__.'/json/bangumi.json',$ValidTimeSpan);        
+        if($expired != 0){
             $data=self::__getCollectionRawData($ID);
             $file=fopen(__DIR__.'/json/bangumi.json',"w");
             fwrite($file,json_encode(array('time'=>time(),'data'=>$data)));
@@ -143,6 +142,9 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
      * @access public
      */
     public function action(){
+        if (function_exists('ignore_user_abort')) {
+            ignore_user_abort(true);
+        }
         header("Content-type: application/json");
         $options = Helper::options();
 		$ID = $options->plugin('PandaBangumi')->ID;
