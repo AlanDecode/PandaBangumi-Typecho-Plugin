@@ -105,7 +105,7 @@ class BangumiAPI
         if ($cache == -1 || $cache == 1) {
             // 缓存无效，重新请求，数据写入
             $raw = self::__getCollectionRawData($ID);
-            if ($raw == -1 || !count($raw)) {
+            if ($raw == -1 || count($raw) == 0) {
                 // 请求数据为空
                 $cache = array('time' => 1, 'data' => array());
             } else {
