@@ -47,3 +47,7 @@ function initCollection(){
 $(document).ready(function(){
     initCollection();
 })
+
+$(document).on('pjax:complete', function () {
+    initCollection();
+})

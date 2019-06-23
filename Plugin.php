@@ -110,7 +110,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
     public static function footer()
     {
         echo '<script type="text/javascript" src="';
-        Helper::options()->pluginUrl('/PandaBangumi/js/PandaBangumi.21.js');
+        Helper::options()->pluginUrl('/PandaBangumi/js/PandaBangumi.22.js');
         echo '?v='.PandaBangumi_Plugin_VERSION.'"></script>';
     }
 }
