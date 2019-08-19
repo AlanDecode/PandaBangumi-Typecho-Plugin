@@ -87,7 +87,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
     public static function header()
     {
         echo '<link rel="stylesheet" href="';
-        Helper::options()->pluginUrl('/PandaBangumi/css/PandaBangumi.20.css');
+        Helper::options()->pluginUrl('/PandaBangumi/css/PandaBangumi.21.css');
         echo '?v='.PandaBangumi_Plugin_VERSION.'" />';
         if (!empty(Helper::options()->plugin('PandaBangumi')->bgmst) && in_array('jq', Helper::options()->plugin('PandaBangumi')->bgmst))
         {
