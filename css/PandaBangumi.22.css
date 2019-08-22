@@ -91,7 +91,6 @@
     margin: 1.2rem auto;
     border: 3px solid rgba(0,0,0,0.2);
     color: #333;
-    background: white;
     transition: 0.3s ease all;
     font-size: 1.2rem;
     cursor: pointer;
@@ -100,7 +99,12 @@
     min-height: 50px;
     align-items: center;
 }
-.loader:hover{
+body.theme-dark .loader {
+    border: 3px solid rgba(255, 255, 255,0.2);
+    color: #b0b0b0
+}
+.loader:hover,
+body.theme-dark .loader:hover {
     border: 3px solid lightpink;
     color: lightpink;
 }
