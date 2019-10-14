@@ -67,6 +67,37 @@ class BangumiAPI
     }
 
     /**
+     * @return array
+     */
+    private static function __getWatchedCollectionRawDataHelper($url)
+    {
+        $data = self::curlFileGetContents($url);
+        if ($data == 'null') {
+            return array(); // 没有标记数据
+        }
+
+        $data = json_decode($data, true)[0];
+
+        $result = array();
+        foreach ($data['collects'] as $collect) {
+            // 只处理已看
+            if ($collect['status']['id'] != 2) continue;
+
+            foreach ($collect['list'] as $item) {
+                array_push($result, array(
+                    'name' => $item['subject']['name'],
+                    'name_cn' => $item['subject']['name_cn'],
+                    'url' => $item['subject']['url'],
+                    'img' => str_replace('http://', 'https://', $item['subject']['images']['large']),
+                    'id' => $item['subject']['id'],
+                ));
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * 检查缓存是否过期
      *
      * @access  private
@@ -93,6 +124,61 @@ class BangumiAPI
     }
 
     /**
+     * 读取与更新本地已看缓存，格式化返回已看数据
+     * 
+     * @access public
+     * @return string
+     */
+    public static function updateWatchedCacheAndReturn($ID, $PageSize, $From, $ValidTimeSpan)
+    {
+        $cache = self::__isCacheExpired(__DIR__ . '/json/watched.json', $ValidTimeSpan);
+
+        // 缓存过期或缓存无效
+        if ($cache == -1 || $cache == 1) {
+            // 缓存无效，重新请求，数据写入
+
+            $appId = 'bgm25a91b0a9bfd7a';
+
+            $watchedAnime = self::__getWatchedCollectionRawDataHelper(
+                'https://api.bgm.tv/user/' . $ID . '/collections/anime?app_id=' . $appId . '&max_results=25'
+            );
+
+            $watchedReal = self::__getWatchedCollectionRawDataHelper(
+                'https://api.bgm.tv/user/' . $ID . '/collections/real?app_id=' . $appId . '&max_results=25'
+            );
+
+            $cache = array('time' => time(), 'data' => array(
+                        'anime' => $watchedAnime,
+                        'real' => $watchedReal)
+                    );
+            // 若全空，很可能是请求失败，则下次强制刷新
+            if (!count($watchedAnime) && !count($watchedReal)) {
+                $cache['time'] = 1;
+            }
+
+            file_put_contents(__DIR__ . '/json/watched.json', json_encode($cache));
+        }
+
+        $cate = array_key_exists('cate', $_GET) ? $_GET['cate'] : 'anime';
+        if (!array_key_exists($cate, $cache['data'])) 
+            return json_encode(array());
+
+        $data = $cache['data'][$cate];
+        $total = count($data);
+
+        if ($From < 0 || $From > $total - 1) {
+            echo json_encode(array());
+        } else {
+            $end = min($From + $PageSize, $total);
+            $out = array();
+            for ($index = $From; $index < $end; $index++) {
+                array_push($out, $data[$index]);
+            }
+            return json_encode($out);
+        }
+    }
+
+    /**
      * 读取与更新本地缓存，格式化返回数据
      *
      * @access public
@@ -100,7 +186,7 @@ class BangumiAPI
      */
     public static function updateCacheAndReturn($ID, $PageSize, $From, $ValidTimeSpan)
     {
-        $cache = self::__isCacheExpired(__DIR__ . '/json/bangumi.json', $ValidTimeSpan);
+        $cache = self::__isCacheExpired(__DIR__ . '/json/watching.json', $ValidTimeSpan);
 
         if ($cache == -1 || $cache == 1) {
             // 缓存无效，重新请求，数据写入
@@ -111,7 +197,7 @@ class BangumiAPI
             } else {
                 $cache = array('time' => time(), 'data' => $raw);
             }
-            file_put_contents(__DIR__ . '/json/bangumi.json', json_encode($cache));
+            file_put_contents(__DIR__ . '/json/watching.json', json_encode($cache));
         } 
 
         $data = $cache['data'];
@@ -120,7 +206,7 @@ class BangumiAPI
         if ($total == 0) {
             // 当前没有数据，把缓存时间重置为 1，下次请求自动刷新
             $cache['time'] = 1;
-            file_put_contents(__DIR__ . '/json/bangumi.json', json_encode($cache));
+            file_put_contents(__DIR__ . '/json/watching.json', json_encode($cache));
             return json_encode(array());
         }
 
@@ -146,6 +232,11 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
     public function action()
     {
         header("Content-type: application/json");
+        if (!array_key_exists('type', $_GET)) {
+            echo json_encode(array());
+            exit;
+        }
+
         $options = Helper::options();
         $ID = $options->plugin('PandaBangumi')->ID;
         $PageSize = $options->plugin('PandaBangumi')->PageSize;
@@ -154,6 +245,10 @@ class PandaBangumi_Action extends Widget_Abstract_Contents implements Widget_Int
         if ($PageSize == -1) {
             $PageSize = 1000000;
         }
-        echo BangumiAPI::updateCacheAndReturn($ID, $PageSize, $From, $ValidTimeSpan);
+
+        if (strtolower($_GET['type']) == 'watching')
+            echo BangumiAPI::updateCacheAndReturn($ID, $PageSize, $From, $ValidTimeSpan);
+        elseif (strtolower($_GET['type']) == 'watched')
+            echo BangumiAPI::updateWatchedCacheAndReturn($ID, $PageSize, $From, $ValidTimeSpan);
     }
 }
