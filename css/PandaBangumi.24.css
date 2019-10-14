@@ -10,7 +10,6 @@
     display: block;
     margin-left: 15px;
     margin-bottom: 15px;
-    width: calc(50% - 15px);
     position: relative;
     box-shadow: 0 0 6px rgba(0,0,0,0.2);
     transition: 0.3s ease box-shadow;
@@ -24,9 +23,21 @@
     text-decoration: none!important;
 }
 
-@media screen and (min-width:767px){
+@media screen and (max-width:767.5px){
     .bgm-item{
         width: calc(33.33333333333% - 15px)
+    }
+}
+
+@media screen and (max-width:400px){
+    .bgm-item{
+        width: calc(50% - 15px)
+    }
+}
+
+@media screen and (min-width:767.5px){
+    .bgm-item{
+        width: calc(25% - 15px)
     }
 }
 
@@ -86,18 +97,14 @@
 
 .loader{
     text-align: center;
-    padding: 0.3rem;
-    max-width: 8rem!important;
+    padding: 0.3em;
+    width: 6.5em;
     margin: 1.2rem auto;
     border: 3px solid rgba(0,0,0,0.2);
     color: #333;
     transition: 0.3s ease all;
-    font-size: 1.2rem;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    min-height: 50px;
-    align-items: center;
+    white-space: nowrap;
 }
 body.theme-dark .loader {
     border: 3px solid rgba(255, 255, 255,0.2);
