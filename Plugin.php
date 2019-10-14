@@ -5,11 +5,11 @@
  * 
  * @package PandaBangumi
  * @author 熊猫小A
- * @version 2.1
+ * @version 2.2
  * @link https://www.imalan.cn
  */
 
-define('PandaBangumi_Plugin_VERSION', '2.1');
+define('PandaBangumi_Plugin_VERSION', '2.2');
 
 class PandaBangumi_Plugin implements Typecho_Plugin_Interface
 {
@@ -57,10 +57,12 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
      */
     public static function config(Typecho_Widget_Helper_Form $form){
         echo '作者：<a href="https://www.imalan.cn">熊猫小A</a>，插件介绍页：<a href="https://blog.imalan.cn/archives/128/">熊猫追番 (PandaBangumi) for Typecho</a><br>';
-        echo '<br><strong>使用方法：</strong><br>';
-        echo '<br>在文章要插入的地方写: ';
-        echo htmlspecialchars('<div class="bgm-collection" id="bgm-collection"></div>');
-        
+        echo '<br><strong>使用方法，在文章要插入的地方写：</strong><br>';
+        echo htmlspecialchars('所有在看：<div data-type="watching" class="bgm-collection"></div>'); echo '<br>';
+        echo htmlspecialchars('已看动画：<div data-type="watched" data-cate="anime" class="bgm-collection"></div>'); echo '<br>';
+        echo htmlspecialchars('已看三次元：<div data-type="watched" data-cate="real" class="bgm-collection"></div>'); echo '<br>';
+        echo '注意，由于 API 限制，其中已看动画与已看三次元只能获取最近 25 部<br>';
+
         $ID = new Typecho_Widget_Helper_Form_Element_Text('ID', NULL, '', _t('用户 ID'), _t('填写你的 Bangumi 主页链接 user 后面那一串数字'));
         $form->addInput($ID);
 
@@ -95,7 +97,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
     public static function header()
     {
         echo '<link rel="stylesheet" href="';
-        Helper::options()->pluginUrl('/PandaBangumi/css/PandaBangumi.22.css');
+        Helper::options()->pluginUrl('/PandaBangumi/css/PandaBangumi.23.css');
         echo '?v='.PandaBangumi_Plugin_VERSION.'" />';
         if (!empty(Helper::options()->plugin('PandaBangumi')->bgmst) && in_array('jq', Helper::options()->plugin('PandaBangumi')->bgmst))
         {
@@ -118,7 +120,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
     public static function footer()
     {
         echo '<script type="text/javascript" src="';
-        Helper::options()->pluginUrl('/PandaBangumi/js/PandaBangumi.22.js');
+        Helper::options()->pluginUrl('/PandaBangumi/js/PandaBangumi.23.js');
         echo '?v='.PandaBangumi_Plugin_VERSION.'"></script>';
     }
 }
