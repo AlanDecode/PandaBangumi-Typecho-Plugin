@@ -5,11 +5,11 @@
  * 
  * @package PandaBangumi
  * @author 熊猫小A
- * @version 2.2
+ * @version 2.3
  * @link https://www.imalan.cn
  */
 
-define('PandaBangumi_Plugin_VERSION', '2.2');
+define('PandaBangumi_Plugin_VERSION', '2.3');
 
 class PandaBangumi_Plugin implements Typecho_Plugin_Interface
 {
@@ -61,7 +61,6 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
         echo htmlspecialchars('所有在看：<div data-type="watching" class="bgm-collection"></div>'); echo '<br>';
         echo htmlspecialchars('已看动画：<div data-type="watched" data-cate="anime" class="bgm-collection"></div>'); echo '<br>';
         echo htmlspecialchars('已看三次元：<div data-type="watched" data-cate="real" class="bgm-collection"></div>'); echo '<br>';
-        echo '注意，由于 API 限制，其中已看动画与已看三次元只能获取最近 25 部<br>';
 
         $ID = new Typecho_Widget_Helper_Form_Element_Text('ID', NULL, '', _t('用户 ID'), _t('填写你的 Bangumi 主页链接 user 后面那一串数字'));
         $form->addInput($ID);
@@ -74,9 +73,18 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
 
         $bgmst= new Typecho_Widget_Helper_Form_Element_Checkbox(
             'bgmst',  
-            array('jq'=>_t('配置是否引入 JQuery：勾选则引入不勾选则不引入<br>')),
+            array('jq'=>_t('配置是否引入 JQuery：勾选则引入不勾选则不引入')),
             array('jq'), _t('基本设置'));
         $form->addInput($bgmst);
+
+        $ParseMethod = new Typecho_Widget_Helper_Form_Element_Radio('ParseMethod', array(
+            'api' => 'API',
+            'webpage' => '网页'), 'api', 
+            '已看列表解析方式', 'API 解析相对稳定，但是有最多获取最近 25 部的限制。网页解析速度可能较慢，但能获取更多记录。不影响在看列表。');
+        $form->addInput($ParseMethod);
+
+        $Limit = new Typecho_Widget_Helper_Form_Element_Text('Limit', NULL, '20', _t('已看列表数量限制'), _t('设置获取数量限制，不建议设置得太大，有被 Bangumi 拉黑的风险。<b>仅当通过网页解析时有效</b>。不影响在看列表。'));
+        $form->addInput($Limit);
     }
 
     /**
@@ -120,7 +128,7 @@ class PandaBangumi_Plugin implements Typecho_Plugin_Interface
     public static function footer()
     {
         echo '<script type="text/javascript" src="';
-        Helper::options()->pluginUrl('/PandaBangumi/js/PandaBangumi.23.js');
+        Helper::options()->pluginUrl('/PandaBangumi/js/PandaBangumi.24.js');
         echo '?v='.PandaBangumi_Plugin_VERSION.'"></script>';
     }
 }

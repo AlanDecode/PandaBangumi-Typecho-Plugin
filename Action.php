@@ -10,6 +10,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
     exit;
 }
 
+require_once 'simple_html_dom.php';
+
 class BangumiAPI
 {
     /**
@@ -26,6 +28,7 @@ class BangumiAPI
         curl_setopt($myCurl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($myCurl, CURLOPT_HEADER, false);
         curl_setopt($myCurl, CURLOPT_REFERER, 'https://bgm.tv/');
+        curl_setopt($myCurl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36');
         $content = curl_exec($myCurl);
         //关闭
         curl_close($myCurl);
@@ -123,6 +126,74 @@ class BangumiAPI
         return $content;
     }
 
+    private static function __parseFromDoc($doc) {
+        $result = array();
+        $bgmBase = 'https://bgm.tv';
+        foreach ($doc->find('#browserItemList li.item') as $item) {
+            $res = array(
+                'name_cn' => $item->find('h3 a', 0)->text(),
+                'name' => $item->find('h3 small', 0)->text(),
+                'url' => $bgmBase.$item->find('h3 a', 0)->href,
+                'img' => str_replace('cover/s/', 'cover/l/',$item->find('img.cover', 0)->src),
+                'id' => str_replace('item_', '', $item->id)
+            );
+
+            if (empty($res['img']))
+                $res['img'] = str_replace('cover/s/', 'cover/l/', 
+                    $item->find('img.cover', 0)->getAttribute('data-cfsrc'));
+
+            array_push($result, $res);
+        }
+        return $result;
+    }
+
+    /**
+     * 通过网页解析在看列表
+     * 
+     * @access public
+     * @param  string $Type 获取类型：anime, real
+     * @param  string $ID Bangumi ID
+     * @return array
+     */
+    public static function __getWatchedCollectionRawDataByWebHelper($ID, $Type)
+    {
+        // 初始 URL
+        $bgmBase = 'https://bgm.tv';
+        $url = "https://bgm.tv/{$Type}/list/{$ID}/collect";
+        $html = self::curlFileGetContents($url);
+        if ($html == 'null') {
+            return array(); // 没有标记数据
+        }
+
+        $doc = str_get_html($html);
+
+        // 解析页面链接
+        $urls = array();
+        $pagerEls = $doc->find('#multipage a.p');
+        foreach ($pagerEls as $pagerEl) {
+            $urls[] = $bgmBase.$pagerEl->href;
+        }
+        $urls = array_unique($urls);
+
+        $result = array();
+        $Limit = Helper::options()->plugin('PandaBangumi')->Limit;
+        
+        // 保存第一页
+        $result = array_merge($result, self::__parseFromDoc($doc));
+
+        // 若不够
+        while (count($result) < $Limit && count($urls)) {
+            $url = array_shift($urls);
+            $html = self::curlFileGetContents($url);
+            if ($html == 'null') break;
+            $doc = str_get_html($html);
+
+            $result = array_merge($result, self::__parseFromDoc($doc));
+        }
+
+        return $result;
+    }
+
     /**
      * 读取与更新本地已看缓存，格式化返回已看数据
      * 
@@ -139,13 +210,21 @@ class BangumiAPI
 
             $appId = 'bgm25a91b0a9bfd7a';
 
-            $watchedAnime = self::__getWatchedCollectionRawDataHelper(
-                'https://api.bgm.tv/user/' . $ID . '/collections/anime?app_id=' . $appId . '&max_results=25'
-            );
+            $method = Helper::options()->plugin('PandaBangumi')->ParseMethod;
 
-            $watchedReal = self::__getWatchedCollectionRawDataHelper(
-                'https://api.bgm.tv/user/' . $ID . '/collections/real?app_id=' . $appId . '&max_results=25'
-            );
+            $watchedAnime = array();
+            $watchedReal = array();
+            if ($method == 'webpage') {
+                $watchedAnime = self::__getWatchedCollectionRawDataByWebHelper($ID, 'anime');
+                $watchedReal = self::__getWatchedCollectionRawDataByWebHelper($ID, 'real');
+            } else {
+                $watchedAnime = self::__getWatchedCollectionRawDataHelper(
+                    'https://api.bgm.tv/user/' . $ID . '/collections/anime?app_id=' . $appId . '&max_results=25'
+                );
+                $watchedReal = self::__getWatchedCollectionRawDataHelper(
+                    'https://api.bgm.tv/user/' . $ID . '/collections/real?app_id=' . $appId . '&max_results=25'
+                );
+            }
 
             $cache = array('time' => time(), 'data' => array(
                         'anime' => $watchedAnime,
