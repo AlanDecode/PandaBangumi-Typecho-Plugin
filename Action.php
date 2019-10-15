@@ -130,9 +130,14 @@ class BangumiAPI
         $result = array();
         $bgmBase = 'https://bgm.tv';
         foreach ($doc->find('#browserItemList li.item') as $item) {
+            $name_cn = $item->find('h3 a', 0)->text();
+            $name = $name_cn;
+            if ($item->find('h3 small', 0) != null)
+                $name = $item->find('h3 small', 0)->text();
+
             $res = array(
-                'name_cn' => $item->find('h3 a', 0)->text(),
-                'name' => $item->find('h3 small', 0)->text(),
+                'name_cn' => $name_cn,
+                'name' => $name,
                 'url' => $bgmBase.$item->find('h3 a', 0)->href,
                 'img' => str_replace('cover/s/', 'cover/l/',$item->find('img.cover', 0)->src),
                 'id' => str_replace('item_', '', $item->id)
